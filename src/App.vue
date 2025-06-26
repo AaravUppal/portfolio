@@ -1,9 +1,9 @@
 <template>
-  <div class="p-6">
-    <TestButton />
+  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <h1 class="text-4xl font-semibold text-gray-800">Hi mom!</h1>
   </div>
 </template>
 
 <script setup>
-import TestButton from '@/components/TestButton.vue'
+// Removed TestButton import since we don't need it now
 </script>
