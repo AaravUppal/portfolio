@@ -1,11 +1,10 @@
-import './assets/main.css'
-
+import './assets/main.css'    // Import Tailwind and other global styles
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router'  // only if you use vue-router
 
 const app = createApp(App)
 
-app.use(router)
+app.use(router)  // only if you use vue-router
 
 app.mount('#app')
