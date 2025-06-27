@@ -9,7 +9,7 @@
       <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-300/20 dark:bg-pink-600/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
     </div>
 
-    <div class="relative z-10">
+    <div class="relative z-10 min-h-screen flex flex-col">
       // NavBar Component
       <NavBar :isDark="isDark" @toggle-theme="toggleTheme" />
       <!-- Hero Section -->
