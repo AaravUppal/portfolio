@@ -1,7 +1,7 @@
 <template>
-  <div :class="{ 'dark': isDark }" class="min-h-screen transition-colors duration-500">
+  <div :class="{ 'dark': isDark }" class="transition-colors duration-500">
     <!-- Background with animated gradient -->
-    <div class="fixed inset-0 bg-white dark:bg-black transition-colors duration-500"></div>    
+    <div class="fixed inset-0 bg-white dark:bg-black transition-colors duration-500 "></div>    
     <!-- Animated background particles -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
       <div class="absolute top-20 left-20 w-64 h-64 bg-blue-300/20 dark:bg-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
@@ -29,9 +29,7 @@
           </h1>
           
           <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Hi, I’m Aarav — a half-Punjabi, half-Kannadiga soul raised in the vibrant city of Kolkata. Growing up immersed in diverse cultures, I’ve developed a unique perspective that I bring into everything I do.
-
-I’m deeply passionate about Computer Science, and I’m on a journey to build something meaningful with it. When I’m not coding, you’ll probably find me lifting at the gym or exploring new ideas that spark curiosity. 
+          This website is not ready yet  
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
