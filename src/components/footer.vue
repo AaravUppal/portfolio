@@ -36,11 +36,22 @@
           <div>
             <h4 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Quick Links</h4>
             <ul class="space-y-2">
+              <li>
+              <router-link
+              to="/"
+              class="text-gray-300 hover:text-blue-400 transition-colors duration-300"
+              > <a href="" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">home</a>
+              </router-link>
+            </li>
               <li><a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About Me</a></li>
               <li><a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a></li>
               <li><a href="#blog" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Blog</a></li>
-              <li><a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a></li>
-            </ul>
+              <router-link
+              to="/contact"
+              class="text-gray-300 hover:text-blue-400 transition-colors duration-300"
+              > <li><a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a></li>
+              </router-link>
+              </ul>
           </div>
           
           <div>

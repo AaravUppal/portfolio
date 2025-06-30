@@ -3,7 +3,6 @@ import './assets/main.css'  // Tailwind and global styles
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import view from './view.vue'
 
 import PrimeVue from 'primevue/config'
 import 'primevue/resources/themes/lara-light-indigo/theme.css'

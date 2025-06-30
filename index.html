@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/goku.svg">
-    <link rel="stylesheet" href="/src/main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/goku.svg" />
+    <link rel="stylesheet" href="/src/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aarav Uppal</title>
+    <script>
+      // Dynamically update the page title based on window width
+      function updateTitle() {
+        const shortTitle = "AU";
+        const longTitle = "Aarav Uppal";
+        const minWidth = 500;
+
+        document.title = window.innerWidth < minWidth ? shortTitle : longTitle;
+      }
+
+      // Update on page load and when window resizes
+      window.addEventListener("load", updateTitle);
+      window.addEventListener("resize", updateTitle);
+    </script>
   </head>
   <body>
     <div id="app"></div>
