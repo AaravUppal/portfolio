@@ -7,8 +7,7 @@
               Aarav Uppal
             </h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4 max-w-md">
-              Passionate full-stack developer creating digital solutions that make a difference. 
-              Always learning, always building.
+              Hi Mom
             </p>
             <div class="flex space-x-4">
               <button class="p-3 bg-gray-200/80 dark:bg-gray-700/80 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
