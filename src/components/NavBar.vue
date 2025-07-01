@@ -22,7 +22,7 @@
         <router-link
           to="/contact"
           class="text-gray-300 hover:text-blue-400 transition-colors duration-300"
-          >Contact</router-link
+          >Get In Touch</router-link
         >
       </div>
     </div>
