@@ -33,11 +33,13 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <RouterLink to="/projects" class="w-full sm:w-auto">
               <Button 
                 label="View My Work" 
                 class="!bg-gradient-to-r !from-blue-600 !to-purple-600 hover:!from-blue-700 hover:!to-purple-700 !text-white !border-0 !px-6 sm:!px-8 !py-3 !text-base sm:!text-lg !font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto"
                 rounded
               />
+            </RouterLink>
               <RouterLink to="/contact" class="w-full sm:w-auto">
   <Button 
     label="Get In Touch"
@@ -89,7 +91,7 @@
   
           <!-- Tech Stack -->
           <div class="text-center mb-12 sm:mb-20 px-4">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">Technologies I Love</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white">Technologies I Use</h2>
             <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
               <Chip 
                 v-for="tech in technologies" 
