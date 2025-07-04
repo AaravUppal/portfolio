@@ -11,7 +11,11 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // Always scroll to top smoothly
+    return { top: 0, behavior: 'smooth' }
+  }
 })
 
 export default router

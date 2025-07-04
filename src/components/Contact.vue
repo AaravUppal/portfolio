@@ -130,17 +130,6 @@
                   </div>
                 </div>
   
-                <div class="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-2xl">
-                  <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-4">
-                      <i class="pi pi-phone text-white text-xl"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-white">Phone</h3>
-                      <p class="text-gray-300">91 9831676669</p>
-                    </div>
-                  </div>
-                </div>
   
                 <div class="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-2xl">
                   <div class="flex items-center mb-4">
