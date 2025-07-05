@@ -1,21 +1,48 @@
 <template>
   <nav class="sticky top-0 z-[100] backdrop-blur-md bg-black/90 border-b border-blue-500/30 shadow-lg shadow-blue-500/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4">
       <div class="flex justify-between items-center h-16 sm:h-20">
-        <!-- Name / Logo -->
-        <router-link
-          to="/"
-          class="group flex items-center space-x-2 text-blue-100 hover:text-blue-300 transition-all duration-300 transform hover:scale-105"
-          exact
-        >
-          <div class="relative">
-            <div class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-white bg-clip-text text-transparent animate-pulse">
-              Aarav Uppal
-            </div>
-            <div class="absolute -inset-1 bg-gradient-to-r from-blue-400/30 via-cyan-300/30 to-white/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-        </router-link>
-
+       <!-- Name / Logo -->
+<router-link
+  to="/"
+  class="group relative flex items-center space-x-2 text-blue-100 hover:text-blue-300 transition-all duration-500 ease-out transform hover:scale-105"
+  exact
+>
+  <!-- Animated background glow -->
+  <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
+  
+  <!-- Subtle border effect -->
+  <div class="absolute -inset-1 bg-gradient-to-r from-blue-400/10 via-cyan-300/10 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  
+  <!-- Main content container -->
+  <div class="relative z-10 flex items-center space-x-2">
+    <!-- Decorative dot -->
+    <div class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-pulse"></div>
+    
+    <!-- Name with enhanced styling -->
+    <div class="relative overflow-hidden">
+      <div class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-white bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-300 group-hover:via-cyan-200 group-hover:to-blue-100">
+        Aarav Uppal
+      </div>
+      
+      <!-- Subtle underline effect -->
+      <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-500 ease-out"></div>
+    </div>
+    
+    <!-- Decorative arrow -->
+    <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+      <svg class="w-4 h-4 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Floating particles effect -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1 left-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-700 delay-100"></div>
+    <div class="absolute top-3 right-6 w-0.5 h-0.5 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700 delay-300"></div>
+  </div>
+</router-link>
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center space-x-8">
           <router-link

@@ -55,7 +55,7 @@
               Big Boi
             </p>
             <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
-              This website is not ready yet
+              This website is not ready
             </p>
           </div>
           
