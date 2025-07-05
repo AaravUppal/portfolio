@@ -1,321 +1,237 @@
 <template>
-    <div class="dark">
-      <!-- Background with animated gradient -->
-      <div class="fixed inset-0 bg-black"></div>    
-      <!-- Animated background particles -->
-      <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-20 left-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute top-40 right-20 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-  
-      <div class="relative z-10 min-h-screen flex flex-col">
-        <!-- NavBar Component -->
-        
-        <!-- Contact Section -->
-        <main class="flex-1 px-6 py-20">
-          <div class="max-w-4xl mx-auto">
-            <!-- Header -->
-            <div class="text-center mb-16">
-              <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent leading-tight">
-                Get In Touch
-              </h1>
-              <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                Have a project in mind or just want to say hello? I'd love to hear from you.
-              </p>
+  <div class="min-h-screen bg-black relative overflow-hidden">
+    <!-- Lightning Background SVG -->
+    <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+          <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+          <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.4" />
+        </linearGradient>
+      </defs>
+
+      <!-- Lightning bolts -->
+      <path d="M200 100 L150 200 L180 200 L120 350 L170 220 L140 220 L200 100 Z" fill="url(#lightning-gradient)" />
+      <path d="M800 150 L750 250 L780 250 L720 400 L770 270 L740 270 L800 150 Z" fill="url(#lightning-gradient)" />
+      <path d="M1000 50 L950 150 L980 150 L920 300 L970 170 L940 170 L1000 50 Z" fill="url(#lightning-gradient)" />
+
+      <!-- Subtle lightning lines -->
+      <path d="M50 300 L100 400 L80 400 L130 500" stroke="url(#lightning-gradient)" stroke-width="2" fill="none" />
+      <path d="M1100 400 L1050 500 L1070 500 L1020 600" stroke="url(#lightning-gradient)" stroke-width="2" fill="none" />
+    </svg>
+
+    <!-- Main Content -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen p-6">
+      <div class="w-full max-w-md">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 via-white to-blue-300 bg-clip-text text-transparent mb-2">
+            Get In Touch
+          </h1>
+          <p class="text-gray-400 text-lg">
+            Let's create something amazing together
+          </p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 shadow-xl">
+          <form @submit.prevent="handleSubmit" class="space-y-6">
+            <!-- Name Field -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
+                Name
+              </label>
+              <input
+                id="name"
+                v-model="form.name"
+                type="text"
+                required
+                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="Your name"
+              />
             </div>
-  
-            <div class="grid md:grid-cols-2 gap-12">
-              <!-- Contact Form -->
-              <div class="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-8 shadow-2xl">
-                <h2 class="text-2xl font-bold text-white mb-6">Send Message</h2>
-                
-                <form @submit.prevent="handleSubmit" class="space-y-6">
-                  <!-- Name Field -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                    <input 
-                      v-model="form.name"
-                      type="text" 
-                      required
-                      class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your full name"
-                    />
-                  </div>
-  
-                  <!-- Email Field -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <input 
-                      v-model="form.email"
-                      type="email" 
-                      required
-                      @blur="validateEmail"
-                      class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      :class="{ 'border-red-500': emailError, 'border-green-500': emailValid }"
-                      placeholder="your.email@example.com"
-                    />
-                    <div v-if="emailError" class="mt-2 text-red-400 text-sm flex items-center">
-                      <i class="pi pi-exclamation-triangle mr-2"></i>
-                      {{ emailError }}
-                    </div>
-                    <div v-if="emailValid && !emailError" class="mt-2 text-green-400 text-sm flex items-center">
-                      <i class="pi pi-check-circle mr-2"></i>
-                      Email looks valid
-                    </div>
-                  </div>
-  
-                  <!-- Subject Field -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                    <input 
-                      v-model="form.subject"
-                      type="text" 
-                      required
-                      class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="What's this about?"
-                    />
-                  </div>
-  
-                  <!-- Message Field -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                    <textarea 
-                      v-model="form.message"
-                      required
-                      rows="5"
-                      class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell me about your project, ideas, or just say hello..."
-                    ></textarea>
-                  </div>
-  
-                  <!-- Submit Button -->
-                  <button 
-                    type="submit"
-                    :disabled="isSubmitting || emailError"
-                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 disabled:transform-none"
-                  >
-                    <span v-if="!isSubmitting" class="flex items-center justify-center">
-                      <i class="pi pi-send mr-2"></i>
-                      Send Message
-                    </span>
-                    <span v-else class="flex items-center justify-center">
-                      <i class="pi pi-spin pi-spinner mr-2"></i>
-                      Sending...
-                    </span>
-                  </button>
-                </form>
-  
-                <!-- Success/Error Messages -->
-                <div v-if="submitMessage" class="mt-6 p-4 rounded-lg" :class="submitSuccess ? 'bg-green-900/50 text-green-200 border border-green-700' : 'bg-red-900/50 text-red-200 border border-red-700'">
-                  <div class="flex items-center">
-                    <i :class="submitSuccess ? 'pi pi-check-circle' : 'pi pi-exclamation-triangle'" class="mr-2"></i>
-                    {{ submitMessage }}
-                  </div>
-                </div>
-              </div>
-  
-              <!-- Contact Info -->
-              <div class="space-y-8">
-                <!-- Contact Cards -->
-                <div class="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-2xl">
-                  <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4">
-                      <i class="pi pi-envelope text-white text-xl"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-white">Email</h3>
-                      <p class="text-gray-300">uppalaarav3@gmail.com</p>
-                    </div>
-                  </div>
-                </div>
-  
-  
-                <div class="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-2xl">
-                  <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
-                      <i class="pi pi-map-marker text-white text-xl"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-white">Location</h3>
-                      <p class="text-gray-300">Bangalore, India</p>
-                    </div>
-                  </div>
-                </div>
-  
-                <!-- Social Links -->
-                <div class="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-2xl">
-                  <h3 class="text-lg font-semibold text-white mb-4">Follow Me</h3>
-                  <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300 transform hover:scale-110">
-                      <i class="pi pi-linkedin text-white"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300 transform hover:scale-110">
-                      <i class="pi pi-github text-white"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300 transform hover:scale-110">
-                      <i class="pi pi-twitter text-white"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+
+            <!-- Email Field -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+                Email Address
+              </label>
+              <input
+                id="email"
+                v-model="form.email"
+                type="email"
+                required
+                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="your@email.com"
+                @blur="validateEmail"
+              />
+              <p v-if="emailError" class="text-red-400 text-sm mt-1">{{ emailError }}</p>
+            </div>
+
+            <!-- Subject Field -->
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">
+                Subject
+              </label>
+              <input
+                id="subject"
+                v-model="form.subject"
+                type="text"
+                required
+                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="What's this about?"
+              />
+            </div>
+
+            <!-- Message Field -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-300 mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                v-model="form.message"
+                rows="5"
+                required
+                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                placeholder="Tell me about your project..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              :disabled="isSubmitting || !isFormValid"
+              class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 disabled:cursor-not-allowed"
+            >
+              <span v-if="isSubmitting" class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+              </span>
+              <span v-else>Send Message</span>
+            </button>
+          </form>
+
+          <!-- Success Message -->
+          <div v-if="showSuccess" class="mt-6 p-4 bg-green-900/50 border border-green-700 rounded-lg">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <p class="text-green-400">Message sent successfully! I'll get back to you soon.</p>
             </div>
           </div>
-        </main>
-        
+
+          <!-- Error Message -->
+          <div v-if="showError" class="mt-6 p-4 bg-red-900/50 border border-red-700 rounded-lg">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <p class="text-red-400">Failed to send message. Please try again.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue'  
-  // Form data
-  const form = ref({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
-  
-  // Form state
-  const isSubmitting = ref(false)
-  const emailError = ref('')
-  const emailValid = ref(false)
-  const submitMessage = ref('')
-  const submitSuccess = ref(false)
-  
-  // Email validation function
-  const validateEmail = async () => {
-    const email = form.value.email.trim()
-    
-    if (!email) {
-      emailError.value = ''
-      emailValid.value = false
-      return
-    }
-  
-    // Basic email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      emailError.value = 'Please enter a valid email address'
-      emailValid.value = false
-      return
-    }
-  
-    try {
-      // Simulate email validation API call
-      // In a real app, you'd call an email validation service
-      await new Promise(resolve => setTimeout(resolve, 500))
-      
-      // For demo purposes, consider all properly formatted emails as valid
-      // In production, you'd integrate with services like:
-      // - EmailJS validation
-      // - Hunter.io
-      // - ZeroBounce
-      // - Abstract API
-      
-      emailError.value = ''
-      emailValid.value = true
-    } catch (error) {
-      emailError.value = 'Unable to validate email'
-      emailValid.value = false
-    }
-  }
-  
-  // Form submission handler
-  const handleSubmit = async () => {
-    if (emailError.value) return
-  
-    isSubmitting.value = true
-    submitMessage.value = ''
-  
-    try {
-      // Simulate form submission
-      // In a real app, you'd integrate with:
-      // - EmailJS for client-side email sending
-      // - Formspree
-      // - Netlify Forms
-      // - Your own backend API
-      
-      await new Promise(resolve => setTimeout(resolve, 2000))
-  
-      // For demo purposes, always succeed
-      // In production, you'd send the actual email:
-      /*
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form.value)
-      })
-      */
-  
-      submitMessage.value = 'Thank you! Your message has been sent successfully.'
-      submitSuccess.value = true
-      
-      // Reset form
-      form.value = {
+  </div>
+</template>
+
+<script>
+import emailjs from '@emailjs/browser';
+
+export default {
+  name: 'ContactPage',
+  data() {
+    return {
+      form: {
         name: '',
         email: '',
         subject: '',
         message: ''
+      },
+      emailError: '',
+      isSubmitting: false,
+      showSuccess: false,
+      showError: false
+    };
+  },
+  computed: {
+    isFormValid() {
+      return (
+        this.form.name &&
+        this.form.email &&
+        this.form.subject &&
+        this.form.message &&
+        this.isValidEmail(this.form.email)
+      );
+    }
+  },
+  methods: {
+    isValidEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    },
+    validateEmail() {
+      if (!this.form.email) {
+        this.emailError = '';
+        return;
       }
-      emailValid.value = false
-  
-    } catch (error) {
-      submitMessage.value = 'Sorry, there was an error sending your message. Please try again.'
-      submitSuccess.value = false
-    } finally {
-      isSubmitting.value = false
-      
-      // Clear message after 5 seconds
-      setTimeout(() => {
-        submitMessage.value = ''
-      }, 5000)
+      this.emailError = this.isValidEmail(this.form.email)
+        ? ''
+        : 'Please enter a valid email address';
+    },
+    async handleSubmit() {
+      this.showSuccess = false;
+      this.showError = false;
+      this.validateEmail();
+
+      if (!this.isFormValid) return;
+
+      this.isSubmitting = true;
+
+      try {
+        const params = {
+          name: this.form.name,
+          from_email: this.form.email,
+          subject: this.form.subject,
+          message: this.form.message,
+          time: new Date().toLocaleString()
+        };
+
+        await emailjs.send(
+          'service_vkmwcz9',     // Replace with your actual service ID
+          'template_auti43i',    // Replace with your actual template ID
+          params,
+          'lDHGQF7s05sSU5i6P'    // Replace with your actual public key
+        );
+
+        this.showSuccess = true;
+        this.form = { name: '', email: '', subject: '', message: '' };
+
+        setTimeout(() => {
+          this.showSuccess = false;
+        }, 5000);
+      } catch (error) {
+        console.error('Error sending email:', error);
+        this.showError = true;
+
+        setTimeout(() => {
+          this.showError = false;
+        }, 5000);
+      } finally {
+        this.isSubmitting = false;
+      }
     }
   }
-  
-  onMounted(() => {
-    // Always set dark mode
-    document.documentElement.classList.add('dark')
-  })
-  </script>
-  
-  <style scoped>
-  /* Custom animations */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Custom gradient animations */
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-  
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient-shift 4s ease infinite;
-  }
-  
-  /* Loading spinner animation */
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  .pi-spin {
-    animation: spin 1s linear infinite;
-  }
-  </style>
+};
+</script>
+<style scoped>
+/* Additional custom styles if needed */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+</style>
