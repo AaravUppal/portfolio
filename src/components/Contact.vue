@@ -131,7 +131,7 @@
               <svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
-              <p class="text-red-400">Failed to send message. Please try again.</p>
+              <p class="text-red-400">{{ errorMessage }}</p>
             </div>
           </div>
         </div>
@@ -156,7 +156,8 @@ export default {
       emailError: '',
       isSubmitting: false,
       showSuccess: false,
-      showError: false
+      showError: false,
+      errorMessage: ''
     };
   },
   computed: {
@@ -194,19 +195,22 @@ export default {
       this.isSubmitting = true;
 
       try {
+        // Updated parameters to match your EmailJS template
         const params = {
           name: this.form.name,
-          from_email: this.form.email,
-          subject: this.form.subject,
+          email: this.form.email,          // Changed from 'from_email' to 'email'
+          subject: this.form.subject,      // Added subject field
           message: this.form.message,
           time: new Date().toLocaleString()
         };
 
+        console.log('Sending email with params:', params); // Debug log
+
         await emailjs.send(
-          'service_vkmwcz9',     // Replace with your actual service ID
-          'template_auti43i',    // Replace with your actual template ID
+          'service_vkmwcz9',     // Your service ID
+          'template_auti43i',    // Your template ID
           params,
-          'lDHGQF7s05sSU5i6P'    // Replace with your actual public key
+          'lDHGQF7s05sSU5i6P'    // Your public key
         );
 
         this.showSuccess = true;
@@ -218,6 +222,7 @@ export default {
       } catch (error) {
         console.error('Error sending email:', error);
         this.showError = true;
+        this.errorMessage = error.text || 'Failed to send message. Please try again.';
 
         setTimeout(() => {
           this.showError = false;
@@ -229,6 +234,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 /* Additional custom styles if needed */
 .backdrop-blur-sm {
