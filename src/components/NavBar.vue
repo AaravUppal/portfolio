@@ -43,9 +43,12 @@
     <div class="absolute top-3 right-6 w-0.5 h-0.5 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700 delay-300"></div>
   </div>
 </router-link>
+        
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center space-x-8">
+          <!-- Show Projects link only when NOT on projects page -->
           <router-link
+            v-if="currentRoute !== '/projects'"
             to="/projects"
             class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
           >
@@ -54,12 +57,25 @@
             <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></div>
           </router-link>
           
+          <!-- Show Contact link only when NOT on contact page -->
           <router-link
+            v-if="currentRoute !== '/contact'"
             to="/contact"
             class="relative px-6 py-2 text-blue-100 hover:text-white transition-all duration-300 group overflow-hidden rounded-lg border border-blue-500/50 hover:border-blue-300/70"
           >
             <span class="relative z-10">Get In Touch</span>
             <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-cyan-400/30 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+          </router-link>
+          
+          <!-- Show Home link when on contact or projects page -->
+          <router-link
+            v-if="currentRoute === '/contact' || currentRoute === '/projects'"
+            to="/"
+            class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
+          >
+            <span class="relative z-10">Home</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></div>
           </router-link>
         </div>
 
@@ -101,7 +117,9 @@
       :class="isMobileMenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'"
     >
       <div class="px-4 py-4 space-y-3 bg-black/95 backdrop-blur-sm border-t border-blue-500/30">
+        <!-- Show Projects link only when NOT on projects page -->
         <router-link
+          v-if="currentRoute !== '/projects'"
           to="/projects"
           @click="closeMobileMenu"
           class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
@@ -114,7 +132,9 @@
           </span>
         </router-link>
         
+        <!-- Show Contact link only when NOT on contact page -->
         <router-link
+          v-if="currentRoute !== '/contact'"
           to="/contact"
           @click="closeMobileMenu"
           class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
@@ -126,15 +146,35 @@
             <span>Get In Touch</span>
           </span>
         </router-link>
+        
+        <!-- Show Home link when on contact or projects page -->
+        <router-link
+          v-if="currentRoute === '/contact' || currentRoute === '/projects'"
+          to="/"
+          @click="closeMobileMenu"
+          class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
+        >
+          <span class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Home</span>
+          </span>
+        </router-link>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const isMobileMenuOpen = ref(false)
+
+// Get current route path
+const currentRoute = computed(() => route.path)
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
