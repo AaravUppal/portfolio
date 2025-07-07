@@ -168,13 +168,13 @@
             
             <!-- Social links -->
             <div class="flex justify-center lg:justify-start gap-6">
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
+              <a href="https://github.com/AaravUppal" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
                 <i class="pi pi-github text-xl"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
+              <a href="https://www.linkedin.com/in/aarav-uppal/" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
                 <i class="pi pi-linkedin text-xl"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
+              <a href="mailto:uppalaarav3@gmail.com" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
                 <i class="pi pi-envelope text-xl"></i>
               </a>
             </div>
