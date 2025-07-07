@@ -80,7 +80,7 @@
               
               <!-- Subtitle with fade-in -->
               <p class="text-sky-300 font-light text-lg animate-fade-in-delay">
-                Big Boi
+                Software Developer
               </p>
               
               <!-- Single action button -->
@@ -125,10 +125,10 @@
             <!-- Enhanced subtitle with typewriter effect -->
             <div class="space-y-3 lg:space-y-4">
               <p class="text-2xl md:text-3xl text-sky-300 font-light">
-                Big Boi
+                Software Developer
               </p>
               <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                This website is not ready
+                this website is not completed yet
               </p>
             </div>
             

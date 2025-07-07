@@ -46,6 +46,17 @@
         
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center space-x-8">
+          <!-- Show About Me link only when NOT on about page -->
+          <router-link
+            v-if="currentRoute !== '/about'"
+            to="/about"
+            class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
+          >
+            <span class="relative z-10">About Me</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></div>
+          </router-link>
+          
           <!-- Show Projects link only when NOT on projects page -->
           <router-link
             v-if="currentRoute !== '/projects'"
@@ -67,9 +78,9 @@
             <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-cyan-400/30 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
           </router-link>
           
-          <!-- Show Home link when on contact or projects page -->
+          <!-- Show Home link when on contact, projects, or about page -->
           <router-link
-            v-if="currentRoute === '/contact' || currentRoute === '/projects'"
+            v-if="currentRoute === '/contact' || currentRoute === '/projects' || currentRoute === '/about'"
             to="/"
             class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
           >
@@ -114,9 +125,24 @@
     <!-- Mobile Navigation Menu -->
     <div
       class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
-      :class="isMobileMenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'"
+      :class="isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'"
     >
       <div class="px-4 py-4 space-y-3 bg-black/95 backdrop-blur-sm border-t border-blue-500/30">
+        <!-- Show About Me link only when NOT on about page -->
+        <router-link
+          v-if="currentRoute !== '/about'"
+          to="/about"
+          @click="closeMobileMenu"
+          class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
+        >
+          <span class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span>About Me</span>
+          </span>
+        </router-link>
+        
         <!-- Show Projects link only when NOT on projects page -->
         <router-link
           v-if="currentRoute !== '/projects'"
@@ -147,9 +173,9 @@
           </span>
         </router-link>
         
-        <!-- Show Home link when on contact or projects page -->
+        <!-- Show Home link when on contact, projects, or about page -->
         <router-link
-          v-if="currentRoute === '/contact' || currentRoute === '/projects'"
+          v-if="currentRoute === '/contact' || currentRoute === '/projects' || currentRoute === '/about'"
           to="/"
           @click="closeMobileMenu"
           class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"

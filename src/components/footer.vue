@@ -58,13 +58,13 @@
             </a>
             
             <!-- Resume Download -->
-            <a href="/path/to/your/resume.pdf" target="_blank" rel="noopener noreferrer" class="group relative p-4 bg-black/80 rounded-2xl hover:bg-gradient-to-r hover:from-cyan-400 hover:via-blue-300 hover:to-white hover:text-black transition-all duration-500 transform hover:scale-125 hover:-translate-y-2 hover:rotate-3 hover:shadow-2xl hover:shadow-cyan-400/50 border border-blue-500/30 hover:border-white/50">
+            <!-- <a href="https://www.example.com/assets/Aarav_Uppal_Resume.pdf" target="_blank" rel="noopener noreferrer" class="group relative p-4 bg-black/80 rounded-2xl hover:bg-gradient-to-r hover:from-cyan-400 hover:via-blue-300 hover:to-white hover:text-black transition-all duration-500 transform hover:scale-125 hover:-translate-y-2 hover:rotate-3 hover:shadow-2xl hover:shadow-cyan-400/50 border border-blue-500/30 hover:border-white/50">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
               </svg>
               <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/0 via-blue-300/0 to-white/0 group-hover:from-cyan-400/30 group-hover:via-blue-300/25 group-hover:to-white/20 transition-all duration-500"></div>
               <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-400/0 via-blue-300/0 to-white/0 group-hover:from-cyan-400/40 group-hover:via-blue-300/30 group-hover:to-white/25 blur-lg transition-all duration-500"></div>
-            </a>
+            </a> -->
           </div>
         </div>
         
