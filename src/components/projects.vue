@@ -12,6 +12,8 @@
       <div class="absolute top-1/2 left-10 w-10 h-10 border border-sky-500/15 rotate-12 animate-pulse opacity-20 delay-4000"></div>
     </div>
 
+
+
     <div class="relative z-10 min-h-screen flex flex-col">
       <!-- NavBar Component -->
       <NavBar />
@@ -56,28 +58,8 @@
             <!-- Project Image -->
             <div class="relative overflow-hidden">
               <div class="w-full h-48 sm:h-56 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center relative">
-                <!-- Placeholder for project image -->
                 <div class="absolute inset-0 bg-gradient-to-br from-sky-400/20 to-cyan-300/20 opacity-50"></div>
                 <i :class="project.icon" class="text-4xl sm:text-5xl text-sky-300 z-10"></i>
-                
-                <!-- Overlay on hover -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                  <div class="flex gap-3">
-                    <button 
-                      @click="openProject(project)"
-                      class="w-10 h-10 bg-sky-400/90 rounded-full flex items-center justify-center text-black hover:bg-sky-400 transition-colors duration-200"
-                    >
-                      <i class="pi pi-eye text-sm"></i>
-                    </button>
-                    <button 
-                      @click="openGitHub(project)"
-                      v-if="project.github"
-                      class="w-10 h-10 bg-cyan-300/90 rounded-full flex items-center justify-center text-black hover:bg-cyan-300 transition-colors duration-200"
-                    >
-                      <i class="pi pi-github text-sm"></i>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -108,20 +90,25 @@
               </div>
               
               <!-- Project Links -->
-              <div class="flex gap-3 pt-4 border-t border-gray-700/50">
+              <div class="flex flex-col gap-3 pt-4 border-t border-gray-700/50">
+                <!-- Live Preview Button -->
                 <button 
-                  @click="openProject(project)"
-                  class="flex-1 bg-gradient-to-r from-sky-400/20 to-cyan-300/20 text-sky-300 py-2 px-4 rounded-lg hover:from-sky-400/30 hover:to-cyan-300/30 transition-all duration-300 text-sm font-medium"
+                  v-if="project.liveUrl"
+                  @click="openLivePreview(project)"
+                  class="w-full bg-gradient-to-r from-sky-400/20 to-cyan-300/20 text-sky-300 py-2 px-4 rounded-lg hover:from-sky-400/30 hover:to-cyan-300/30 transition-all duration-300 text-sm font-medium flex items-center justify-center gap-2"
                 >
-                  View Details
+                  <i class="pi pi-external-link"></i>
+                  Live Preview
                 </button>
-                <button 
-                  @click="openGitHub(project)"
-                  v-if="project.github"
-                  class="w-10 h-10 bg-gray-700/50 text-gray-400 rounded-lg hover:bg-gray-700 hover:text-white transition-all duration-300 flex items-center justify-center"
-                >
-                  <i class="pi pi-github text-sm"></i>
-                </button>
+                
+                  <!-- GitHub Button -->
+                  <button 
+                    @click="openGitHub(project)"
+                    class="w-full bg-gray-700/50 text-gray-300 py-2 px-4 rounded-lg hover:bg-gray-700 hover:text-white transition-all duration-300 text-sm font-medium flex items-center justify-center gap-2"
+                  >
+                    <i class="pi pi-github"></i>
+                    GitHub
+                  </button>
               </div>
             </div>
           </div>
@@ -229,7 +216,7 @@ import Button from 'primevue/button'
 const selectedCategory = ref('All')
 const categories = ['All', 'Web Development', 'University Project', 'Personal Project']
 
-// Your actual projects data
+// Updated projects data with all links
 const projects = ref([
   {
     id: 1,
@@ -239,7 +226,8 @@ const projects = ref([
     technologies: ['Vue.js', 'Tailwind CSS', 'JavaScript', 'Git', 'GitHub'],
     year: '2024',
     icon: 'pi pi-clock',
-    github: null, // Add GitHub link when available
+    github: 'https://github.com/DerKaiser28/PomPowerWebsite',
+    liveUrl: null,
     type: 'internship'
   },
   {
@@ -250,7 +238,8 @@ const projects = ref([
     technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'Git', 'GitHub'],
     year: '2024',
     icon: 'pi pi-users',
-    github: null, // Add GitHub link when available
+    github: 'https://github.com/DerKaiser28/MentorMenteeApp',
+    liveUrl: 'https://mentor-app-client-1ov3.vercel.app/',
     type: 'university'
   },
   {
@@ -261,7 +250,9 @@ const projects = ref([
     technologies: ['Java', 'Spring Boot', 'React.js', 'Tailwind CSS', 'MySQL', 'JWT', 'Swagger'],
     year: '2024',
     icon: 'pi pi-check-square',
-    github: null, // Add GitHub link when available
+    github: 'https://github.com/AaravUppal/taskflow',
+    liveUrl: null,
+    hasCertificate: false,
     type: 'personal'
   }
 ])
@@ -275,9 +266,10 @@ const filteredProjects = computed(() => {
 })
 
 // Methods
-const openProject = (project) => {
-  // You can implement a modal or detailed view here
-  console.log('Opening project:', project.title)
+const openLivePreview = (project) => {
+  if (project.liveUrl) {
+    window.open(project.liveUrl, '_blank')
+  }
 }
 
 const openGitHub = (project) => {
@@ -287,12 +279,11 @@ const openGitHub = (project) => {
 }
 
 const openPortfolio = () => {
-  window.open('https://aaravuppal.com', '_blank')
+  window.open('https://www.aaravuppal.com/', '_blank')
 }
 
 const openPortfolioGitHub = () => {
-  // Add your portfolio GitHub link here when available
-  console.log('Portfolio GitHub link needed')
+  window.open('https://github.com/AaravUppal/portfolio', '_blank')
 }
 
 // Function to update title
@@ -355,6 +346,15 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(56, 189, 248, 0.5);
+}
+
+/* Modal animations */
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from, .modal-leave-to {
+  opacity: 0;
 }
 
 /* Mobile responsive adjustments */

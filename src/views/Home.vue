@@ -114,7 +114,7 @@
         </div>
 
         <!-- Desktop Layout - Unchanged -->
-        <div class="hidden sm:grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 sm:mb-20">
+        <div class="hidden sm:grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 sm:mt-8 sm:mb-20">
           <!-- Left Side - Introduction -->
           <div class="text-center lg:text-left space-y-6 lg:space-y-8">
             <!-- Enhanced Title with better gradient -->
