@@ -142,10 +142,10 @@
                     <!-- Image container - Responsive sizing -->
                     <div class="w-48 h-60 sm:w-64 sm:h-80 md:w-80 md:h-96 lg:w-80 lg:h-96 xl:w-96 xl:h-[28rem] rounded-md sm:rounded-lg overflow-hidden relative group">
                       <img 
-                        src="../assets/dp.jpg" 
-                        alt="Aarav Uppal - Profile" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                      />
+  src="@/assets/dp.jpg" 
+  alt="Aarav Uppal - Profile" 
+  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+/>
                       <!-- Overlay effects -->
                       <div class="absolute inset-0 bg-gradient-to-t from-sky-900/30 via-transparent to-cyan-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       <div class="absolute inset-0 bg-gradient-to-r from-transparent via-sky-400/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
