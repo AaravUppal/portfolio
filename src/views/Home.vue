@@ -142,7 +142,7 @@
                     <!-- Image container - Responsive sizing -->
                     <div class="w-48 h-60 sm:w-64 sm:h-80 md:w-80 md:h-96 lg:w-80 lg:h-96 xl:w-96 xl:h-[28rem] rounded-md sm:rounded-lg overflow-hidden relative group">
                       <img 
-                        src="../assets/dp.JPG" 
+                        src="../assets/dp.jpg" 
                         alt="Aarav Uppal - Profile" 
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                       />
