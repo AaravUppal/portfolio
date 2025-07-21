@@ -26,21 +26,7 @@
         </div>
 
         <!-- Filter Buttons -->
-        <div class="flex flex-wrap justify-center gap-4 mb-12">
-          <button 
-            v-for="category in categories" 
-            :key="category"
-            @click="selectedCategory = category"
-            :class="[
-              'px-6 py-3 rounded-full border transition-all duration-300',
-              selectedCategory === category
-                ? 'bg-gradient-to-r from-sky-400 to-cyan-300 text-black border-transparent'
-                : 'bg-gray-800/50 text-gray-300 border-sky-400/20 hover:border-sky-400/40'
-            ]"
-          >
-            {{ category }}
-          </button>
-        </div>
+       
 
         <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
