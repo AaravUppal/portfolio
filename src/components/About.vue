@@ -27,24 +27,7 @@
 
         <!-- Main Content Grid -->
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-16">
-          <!-- Left Column - Image -->
-          <div class="flex justify-center lg:justify-start">
-            <div class="relative">
-              <!-- Subtle glow effect -->
-              <div class="absolute -inset-4 bg-gradient-to-r from-sky-400/10 to-cyan-300/10 rounded-2xl blur-xl"></div>
-              
-              <!-- Image container -->
-              <div class="relative bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-sky-400/20">
-                <div class="w-72 h-96 sm:w-80 sm:h-[28rem] rounded-lg overflow-hidden">
-                  <img 
-                    src="../assets/jatt.jpg" 
-                    alt="Aarav Uppal" 
-                    class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+         
 
           <!-- Right Column - Introduction -->
           <div class="space-y-8 lg:space-y-12">
@@ -341,33 +324,34 @@
         </div>
 
         <!-- Bottom CTA Section -->
-        <div class="text-center mt-20 sm:mt-32">
-          <div class="bg-gradient-to-r from-gray-800/30 via-gray-700/30 to-gray-800/30 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-sky-400/10 max-w-2xl mx-auto">
-            <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-white">Let's Build Something Great</h3>
-            <p class="text-gray-300 mb-8 max-w-md mx-auto">
-              I'm always excited to take on new challenges and collaborate on innovative projects.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <RouterLink to="/projects">
-                <Button 
-                  label="View My Work" 
-                  class="!bg-gradient-to-r !from-sky-400 !to-cyan-300 hover:!from-sky-500 hover:!to-cyan-400 !text-black !border-0 !px-8 !py-3 !text-base !font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  rounded
-                  icon="pi pi-arrow-right"
-                  iconPos="right"
-                />
-              </RouterLink>
-              <RouterLink to="/contact">
-                <Button 
-                  label="Get In Touch"
-                  class="!bg-transparent !text-sky-300 !border-2 !border-sky-400 hover:!bg-sky-400/10 hover:!border-sky-300 !px-8 !py-3 !text-base !font-semibold transition-all duration-300 transform hover:-translate-y-1"
-                  rounded
-                  icon="pi pi-send"
-                  iconPos="right"
-                />
-              </RouterLink>
-            </div>
-          </div>
+        <div class="text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 border border-sky-400/20 shadow-2xl">
+          <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white">Ready to work together?</h3>
+          <p class="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 max-w-xl mx-auto">Let's create something amazing together. I'm always excited to take on new challenges and collaborate on innovative projects.</p>
+          <RouterLink to="/contact">
+            <button 
+              class="group relative px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-gradient-to-r from-blue-400 via-cyan-300 to-white text-black rounded-lg transition-all duration-500 ease-out transform hover:scale-105 hover:from-blue-300 hover:via-cyan-200 hover:to-blue-100 overflow-hidden shadow-lg hover:shadow-xl"
+            >
+              <!-- Animated background glow -->
+              <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
+              
+              <!-- Subtle border effect -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-blue-400/10 via-cyan-300/10 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <!-- Main content -->
+              <div class="relative z-10 flex items-center justify-center space-x-2">
+                <span>Start a Project</span>
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </div>
+              
+              <!-- Floating particles effect -->
+              <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-2 left-6 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-700 delay-100"></div>
+                <div class="absolute top-4 right-8 w-0.5 h-0.5 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700 delay-300"></div>
+              </div>
+            </button>
+          </RouterLink>
         </div>
       </main>
       

@@ -182,7 +182,7 @@
               <svg class="w-5 h-5 mr-3 opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
               </svg>
-              <span class="font-medium">Java & Python Programming</span>
+              <span class="font-medium">Java Programming</span>
             </li>
             <li class="group flex items-center p-3 rounded-xl text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-400/20 hover:to-sky-200/20 transition-all duration-500 transform hover:translate-x-4 hover:scale-105 border border-transparent hover:border-blue-400/30 hover:shadow-lg hover:shadow-blue-400/20">
               <div class="w-3 h-3 bg-gradient-to-r from-blue-400 to-white rounded-full mr-4 group-hover:scale-150 group-hover:rotate-180 transition-all duration-500"></div>
