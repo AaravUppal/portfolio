@@ -265,7 +265,7 @@ const projects = ref([
     icon: 'pi pi-check-square',
     github: 'https://github.com/AaravUppal/taskflow',
     hasCertificate: false,
-    imageUrl: null
+    imageUrl: new URL('@/assets/taskflow.png', import.meta.url).href,
   },
   {
     id: 4,
@@ -277,7 +277,7 @@ const projects = ref([
     icon: 'pi pi-user',
     github: 'https://github.com/AaravUppal/portfolio',
     hasCertificate: false,
-    imageUrl: null
+    imageUrl: new URL('@/assets/website.png', import.meta.url).href,
   }
 ])
 

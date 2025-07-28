@@ -209,25 +209,26 @@
               </div>
             </div>
 
-            <!-- Version Control -->
             <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
-              <div class="flex items-center mb-6">
-                <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
-                  <i class="pi pi-git text-black text-lg"></i>
-                </div>
-                <h3 class="font-semibold text-white text-lg">Version Control</h3>
-              </div>
-              <div class="space-y-3">
-                <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
-                  <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
-                  <span class="text-gray-300">Git</span>
-                </div>
-                <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
-                  <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
-                  <span class="text-gray-300">GitHub</span>
-                </div>
-              </div>
-            </div>
+  <div class="flex items-center mb-6">
+    <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"></path>
+      </svg>
+    </div>
+    <h3 class="font-semibold text-white text-lg">Version Control</h3>
+  </div>
+  <div class="space-y-3">
+    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
+      <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
+      <span class="text-gray-300">Git</span>
+    </div>
+    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
+      <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
+      <span class="text-gray-300">GitHub</span>
+    </div>
+  </div>
+</div>
 
             <!-- Others -->
             <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
