@@ -120,9 +120,7 @@
   <a href="mailto:uppalaarav3@gmail.com" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
     <i class="pi pi-envelope text-lg sm:text-xl"></i>
   </a>
-  <a href="/Aarav_Uppal_Resume.pdf" target="_blank" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
-    <i class="pi pi-file text-lg sm:text-xl"></i>
-  </a>
+  
 </div>
           </div>
           

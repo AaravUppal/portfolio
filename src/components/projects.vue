@@ -204,13 +204,7 @@
 
         <!-- Modal Footer -->
         <div class="p-4 border-t border-gray-700 bg-gray-800/95">
-          <button 
-            @click="downloadCertificate"
-            class="w-full bg-gradient-to-r from-sky-400/20 to-cyan-300/20 text-sky-300 py-2 px-4 rounded-lg hover:from-sky-400/30 hover:to-cyan-300/30 transition-all duration-300 font-medium flex items-center justify-center gap-2"
-          >
-            <i class="pi pi-download"></i>
-            Download Certificate
-          </button>
+        
         </div>
       </div>
     </div>

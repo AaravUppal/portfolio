@@ -1,5 +1,22 @@
 <template>
-  <nav class="sticky top-0 z-[100] backdrop-blur-md bg-black/90 border-b border-blue-500/30 shadow-lg shadow-blue-500/10">
+  <nav class="sticky top-0 z-[100] backdrop-blur-md bg-black/90 border-b border-blue-500/30 shadow-lg shadow-blue-500/10 relative">
+    <!-- Scroll Progress Bar -->
+    <div class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 w-full">
+      <div 
+        class="h-full bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 transition-all duration-150 ease-out shadow-lg shadow-blue-400/30 relative overflow-hidden"
+        :style="{ width: scrollProgress + '%' }"
+      >
+        <!-- Animated shimmer effect -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] animate-shimmer"></div>
+        
+        <!-- Pulsing glow at the end -->
+        <div 
+          class="absolute right-0 top-0 w-2 h-full bg-gradient-to-l from-cyan-300 via-blue-300 to-transparent opacity-80"
+          :class="{ 'animate-pulse': scrollProgress > 0 }"
+        ></div>
+      </div>
+    </div>
+
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4">
       <div class="flex justify-between items-center h-16 sm:h-20">
        <!-- Name / Logo -->
@@ -193,11 +210,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const isMobileMenuOpen = ref(false)
+const scrollProgress = ref(0)
 
 // Get current route path
 const currentRoute = computed(() => route.path)
@@ -209,4 +227,53 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
 }
+
+// Scroll progress calculation
+const updateScrollProgress = () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+  
+  if (scrollHeight > 0) {
+    scrollProgress.value = Math.min((scrollTop / scrollHeight) * 100, 100)
+  } else {
+    scrollProgress.value = 0
+  }
+}
+
+// Throttle scroll events for better performance
+let ticking = false
+const handleScroll = () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      updateScrollProgress()
+      ticking = false
+    })
+    ticking = true
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  updateScrollProgress() // Initial calculation
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
+
+<style scoped>
+/* Custom shimmer animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+</style>
