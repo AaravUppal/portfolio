@@ -246,7 +246,7 @@ const projects = ref([
     icon: 'pi pi-users',
     github: 'https://github.com/DerKaiser28/MentorMenteeApp',
     hasCertificate: true,
-    certificateUrl: '/path/to/mentor-mentee-certificate.jpg', // Replace with actual path
+    certificateUrl: new URL('@/assets/mentormentee.png', import.meta.url).href,
     imageUrl: new URL('@/assets/christ.avif', import.meta.url).href,
   },
   {
