@@ -110,18 +110,17 @@
             </div>
             
             <!-- Social links -->
-<div class="flex justify-center lg:justify-start gap-6 pt-2 sm:pt-4">
-  <a href="https://github.com/AaravUppal" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
-    <i class="pi pi-github text-lg sm:text-xl"></i>
-  </a>
-  <a href="https://www.linkedin.com/in/aarav-uppal/" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
-    <i class="pi pi-linkedin text-lg sm:text-xl"></i>
-  </a>
-  <a href="mailto:uppalaarav3@gmail.com" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
-    <i class="pi pi-envelope text-lg sm:text-xl"></i>
-  </a>
-  
-</div>
+            <div class="flex justify-center lg:justify-start gap-6 pt-2 sm:pt-4">
+              <a href="https://github.com/AaravUppal" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
+                <i class="pi pi-github text-lg sm:text-xl"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/aarav-uppal/" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
+                <i class="pi pi-linkedin text-lg sm:text-xl"></i>
+              </a>
+              <a href="mailto:uppalaarav3@gmail.com" class="text-gray-400 hover:text-sky-300 transition-colors duration-300 transform hover:scale-125">
+                <i class="pi pi-envelope text-lg sm:text-xl"></i>
+              </a>
+            </div>
           </div>
           
           <!-- Right Side - Enhanced Profile Image (Mobile: Top, Desktop: Right) -->
@@ -143,10 +142,10 @@
                     <!-- Image container - Responsive sizing -->
                     <div class="w-48 h-60 sm:w-64 sm:h-80 md:w-80 md:h-96 lg:w-80 lg:h-96 xl:w-96 xl:h-[28rem] rounded-md sm:rounded-lg overflow-hidden relative group">
                       <img 
-  src="@/assets/dp.jpg" 
-  alt="Aarav Uppal - Profile" 
-  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-/>
+                        src="@/assets/dp.jpg" 
+                        alt="Aarav Uppal - Profile" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      />
                       <!-- Overlay effects -->
                       <div class="absolute inset-0 bg-gradient-to-t from-sky-900/30 via-transparent to-cyan-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       <div class="absolute inset-0 bg-gradient-to-r from-transparent via-sky-400/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
@@ -276,215 +275,214 @@
             </div>
           </div>
         </section>
-        <!-- Add this new section after your existing experience items in the timeline -->
 
+        <!-- Enhanced Stats Section -->
         <div class="space-y-8">
-<!-- LeetCode Stats -->
-<div class="w-full flex justify-center px-4 sm:px-6 lg:px-8">
-  <div class="w-full max-w-md sm:max-w-lg lg:max-w-xl">
-    <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-orange-400/20 shadow-xl hover:shadow-2xl hover:shadow-orange-400/20 transition-all duration-500 group">
-      
-      <!-- LeetCode Header -->
-      <div class="flex items-center justify-center space-x-3 mb-6">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-[#1A1A1A] rounded-lg flex items-center justify-center shadow-md">
-          <!-- LeetCode Logo SVG -->
-          <svg class="w-7 h-7" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M31.5 64L63 32.5" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
-            <path d="M63 32.5L96.5 64" stroke="#FFA116" stroke-width="10" stroke-linecap="round"/>
-            <path d="M96.5 64L63 95.5" stroke="#FFA116" stroke-width="10" stroke-linecap="round"/>
-            <path d="M63 95.5L31.5 64" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
-            <path d="M50 64H78" stroke="#939393" stroke-width="10" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="text-center sm:text-left">
-          <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-orange-200 transition-colors duration-300">
-            LeetCode Progress
-          </h3>
-          <p class="text-orange-300 font-medium text-sm sm:text-base">Problem Solving Journey</p>
-        </div>
-      </div>
-      
-      <!-- Stats Loading/Display -->
-      <div v-if="leetcodeLoading" class="flex items-center justify-center space-x-2 mb-6">
-        <div class="animate-spin w-5 h-5 border-2 border-orange-400 border-t-transparent rounded-full"></div>
-        <span class="text-sm text-gray-300">Loading LeetCode stats...</span>
-      </div>
-      
-      <div v-else-if="leetcodeError" class="mb-6 text-center">
-        <p class="text-sm text-red-400">{{ leetcodeError }}</p>
-      </div>
-      
-      <div v-else-if="leetcodeStats" class="mb-6">
-        <!-- Progress Ring (Centered) -->
-        <div class="flex justify-center mb-6">
-          <div class="relative w-32 h-32 sm:w-36 sm:h-36">
-            <!-- Background Circle -->
-            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-              <!-- Background ring -->
-              <circle cx="50" cy="50" r="40" stroke="#374151" stroke-width="8" fill="none" opacity="0.3"/>
-              
-              <!-- Easy solved ring -->
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="40" 
-                stroke="#22c55e" 
-                stroke-width="8" 
-                fill="none"
-                :stroke-dasharray="`${(leetcodeStats.easySolved / leetcodeStats.totalQuestions) * 251.2} 251.2`"
-                stroke-linecap="round"
-                class="transition-all duration-1000 ease-out"
-              />
-              
-              <!-- Medium solved ring -->
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="40" 
-                stroke="#eab308" 
-                stroke-width="8" 
-                fill="none"
-                :stroke-dasharray="`${(leetcodeStats.mediumSolved / leetcodeStats.totalQuestions) * 251.2} 251.2`"
-                :stroke-dashoffset="`${-((leetcodeStats.easySolved / leetcodeStats.totalQuestions) * 251.2)}`"
-                stroke-linecap="round"
-                class="transition-all duration-1000 ease-out delay-300"
-              />
-              
-              <!-- Hard solved ring -->
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="40" 
-                stroke="#ef4444" 
-                stroke-width="8" 
-                fill="none"
-                :stroke-dasharray="`${(leetcodeStats.hardSolved / leetcodeStats.totalQuestions) * 251.2} 251.2`"
-                :stroke-dashoffset="`${-(((leetcodeStats.easySolved + leetcodeStats.mediumSolved) / leetcodeStats.totalQuestions) * 251.2)}`"
-                stroke-linecap="round"
-                class="transition-all duration-1000 ease-out delay-600"
-              />
-            </svg>
-            
-            <!-- Center Content -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center">
-              <div class="text-2xl sm:text-3xl font-bold text-white">{{ leetcodeStats.totalSolved }}</div>
-              <div class="text-xs sm:text-sm text-green-400 font-medium">✓ Solved</div>
+          <!-- LeetCode Stats -->
+          <div class="w-full flex justify-center px-4 sm:px-6 lg:px-8">
+            <div class="w-full max-w-md sm:max-w-lg lg:max-w-xl">
+              <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-orange-400/20 shadow-xl hover:shadow-2xl hover:shadow-orange-400/20 transition-all duration-500 group">
+                
+                <!-- LeetCode Header -->
+                <div class="flex items-center justify-center space-x-3 mb-6">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 bg-[#1A1A1A] rounded-lg flex items-center justify-center shadow-md">
+                    <!-- LeetCode Logo SVG -->
+                    <svg class="w-7 h-7" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M31.5 64L63 32.5" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+                      <path d="M63 32.5L96.5 64" stroke="#FFA116" stroke-width="10" stroke-linecap="round"/>
+                      <path d="M96.5 64L63 95.5" stroke="#FFA116" stroke-width="10" stroke-linecap="round"/>
+                      <path d="M63 95.5L31.5 64" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+                      <path d="M50 64H78" stroke="#939393" stroke-width="10" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="text-center sm:text-left">
+                    <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-orange-200 transition-colors duration-300">
+                      LeetCode Progress
+                    </h3>
+                    <p class="text-orange-300 font-medium text-sm sm:text-base">Problem Solving Journey</p>
+                  </div>
+                </div>
+                
+                <!-- Stats Loading/Display -->
+                <div v-if="leetcodeLoading" class="flex items-center justify-center space-x-2 mb-6">
+                  <div class="animate-spin w-5 h-5 border-2 border-orange-400 border-t-transparent rounded-full"></div>
+                  <span class="text-sm text-gray-300">Loading LeetCode stats...</span>
+                </div>
+                
+                <div v-else-if="leetcodeError" class="mb-6 text-center">
+                  <p class="text-sm text-red-400">{{ leetcodeError }}</p>
+                </div>
+                
+                <div v-else-if="leetcodeStats" class="mb-6">
+                  <!-- Progress Ring (Centered) -->
+                  <div class="flex justify-center mb-6">
+                    <div class="relative w-32 h-32 sm:w-36 sm:h-36">
+                      <!-- Background Circle -->
+                      <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                        <!-- Background ring -->
+                        <circle cx="50" cy="50" r="40" stroke="#374151" stroke-width="8" fill="none" opacity="0.3"/>
+                        
+                        <!-- Easy solved ring -->
+                        <circle 
+                          cx="50" 
+                          cy="50" 
+                          r="40" 
+                          stroke="#22c55e" 
+                          stroke-width="8" 
+                          fill="none"
+                          :stroke-dasharray="`${(leetcodeStats.easySolved / leetcodeStats.totalQuestions) * 251.2} 251.2`"
+                          stroke-linecap="round"
+                          class="transition-all duration-1000 ease-out"
+                        />
+                        
+                        <!-- Medium solved ring -->
+                        <circle 
+                          cx="50" 
+                          cy="50" 
+                          r="40" 
+                          stroke="#eab308" 
+                          stroke-width="8" 
+                          fill="none"
+                          :stroke-dasharray="`${(leetcodeStats.mediumSolved / leetcodeStats.totalQuestions) * 251.2} 251.2`"
+                          :stroke-dashoffset="`${-((leetcodeStats.easySolved / leetcodeStats.totalQuestions) * 251.2)}`"
+                          stroke-linecap="round"
+                          class="transition-all duration-1000 ease-out delay-300"
+                        />
+                        
+                        <!-- Hard solved ring -->
+                        <circle 
+                          cx="50" 
+                          cy="50" 
+                          r="40" 
+                          stroke="#ef4444" 
+                          stroke-width="8" 
+                          fill="none"
+                          :stroke-dasharray="`${(leetcodeStats.hardSolved / leetcodeStats.totalQuestions) * 251.2} 251.2`"
+                          :stroke-dashoffset="`${-(((leetcodeStats.easySolved + leetcodeStats.mediumSolved) / leetcodeStats.totalQuestions) * 251.2)}`"
+                          stroke-linecap="round"
+                          class="transition-all duration-1000 ease-out delay-600"
+                        />
+                      </svg>
+                      
+                      <!-- Center Content -->
+                      <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <div class="text-2xl sm:text-3xl font-bold text-white">{{ leetcodeStats.totalSolved }}</div>
+                        <div class="text-xs sm:text-sm text-green-400 font-medium">✓ Solved</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Stats Breakdown (Centered Grid) -->
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4">
+                    <!-- Easy -->
+                    <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-600/30 hover:border-green-400/30 transition-colors duration-300">
+                      <div class="text-center">
+                        <div class="text-green-400 font-semibold text-sm mb-1">Easy</div>
+                        <div class="text-white font-bold text-lg">{{ leetcodeStats.easySolved }}</div>
+                        <div class="text-gray-400 text-xs">/ {{ leetcodeStats.easyTotal }}</div>
+                      </div>
+                    </div>
+                    
+                    <!-- Medium -->
+                    <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-600/30 hover:border-yellow-400/30 transition-colors duration-300">
+                      <div class="text-center">
+                        <div class="text-yellow-400 font-semibold text-sm mb-1">Medium</div>
+                        <div class="text-white font-bold text-lg">{{ leetcodeStats.mediumSolved }}</div>
+                        <div class="text-gray-400 text-xs">/ {{ leetcodeStats.mediumTotal }}</div>
+                      </div>
+                    </div>
+                    
+                    <!-- Hard -->
+                    <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-600/30 hover:border-red-400/30 transition-colors duration-300">
+                      <div class="text-center">
+                        <div class="text-red-400 font-semibold text-sm mb-1">Hard</div>
+                        <div class="text-white font-bold text-lg">{{ leetcodeStats.hardSolved }}</div>
+                        <div class="text-gray-400 text-xs">/ {{ leetcodeStats.hardTotal }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Attempting Stats -->
+                  <div class="text-center mb-4">
+                    <div class="inline-flex items-center space-x-2 bg-gray-700/30 rounded-full px-4 py-2 border border-gray-600/30">
+                      <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                      <span class="text-sm text-gray-300">
+                        <span class="text-blue-400 font-semibold">{{ leetcodeStats.attempting || 0 }}</span> Currently Attempting
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Link to LeetCode Profile -->
+                <div class="text-center">
+                  <a 
+                    href="https://leetcode.com/u/aaravuppal_/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-orange-500/20 to-orange-600/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-400/30 hover:border-orange-400/50 rounded-lg text-orange-300 hover:text-orange-200 transition-all duration-300 group/link"
+                  >
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                    <span class="font-medium">View LeetCode Profile</span>
+                    <svg class="w-3 h-3 ml-2 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Stats Breakdown (Centered Grid) -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4">
-          <!-- Easy -->
-          <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-600/30 hover:border-green-400/30 transition-colors duration-300">
-            <div class="text-center">
-              <div class="text-green-400 font-semibold text-sm mb-1">Easy</div>
-              <div class="text-white font-bold text-lg">{{ leetcodeStats.easySolved }}</div>
-              <div class="text-gray-400 text-xs">/ {{ leetcodeStats.easyTotal }}</div>
-            </div>
-          </div>
-          
-          <!-- Medium -->
-          <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-600/30 hover:border-yellow-400/30 transition-colors duration-300">
-            <div class="text-center">
-              <div class="text-yellow-400 font-semibold text-sm mb-1">Medium</div>
-              <div class="text-white font-bold text-lg">{{ leetcodeStats.mediumSolved }}</div>
-              <div class="text-gray-400 text-xs">/ {{ leetcodeStats.mediumTotal }}</div>
-            </div>
-          </div>
-          
-          <!-- Hard -->
-          <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-600/30 hover:border-red-400/30 transition-colors duration-300">
-            <div class="text-center">
-              <div class="text-red-400 font-semibold text-sm mb-1">Hard</div>
-              <div class="text-white font-bold text-lg">{{ leetcodeStats.hardSolved }}</div>
-              <div class="text-gray-400 text-xs">/ {{ leetcodeStats.hardTotal }}</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Attempting Stats -->
-        <div class="text-center mb-4">
-          <div class="inline-flex items-center space-x-2 bg-gray-700/30 rounded-full px-4 py-2 border border-gray-600/30">
-            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-            <span class="text-sm text-gray-300">
-              <span class="text-blue-400 font-semibold">{{ leetcodeStats.attempting || 0 }}</span> Currently Attempting
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Link to LeetCode Profile -->
-      <div class="text-center">
-        <a 
-          href="https://leetcode.com/u/aaravuppal_/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-orange-500/20 to-orange-600/20 hover:from-orange-500/30 hover:to-orange-600/30 border border-orange-400/30 hover:border-orange-400/50 rounded-lg text-orange-300 hover:text-orange-200 transition-all duration-300 group/link"
-        >
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-          </svg>
-          <span class="font-medium">View LeetCode Profile</span>
-          <svg class="w-3 h-3 ml-2 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<!-- Tech Stack Section -->
-<div class="relative flex items-center">
-  <div class="w-full">
-    <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-400/20 shadow-xl hover:shadow-2xl hover:shadow-blue-400/20 transition-all duration-500 group">
-      <!-- Tech Stack Header -->
-      <div class="flex items-center space-x-3 mb-6">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-[#1A1A1A] rounded-lg flex items-center justify-center shadow-md">
-          <svg class="w-7 h-7" fill="none" stroke="#60A5FA" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-blue-200 transition-colors duration-300">
-            Tech Stack
-          </h3>
-          <p class="text-blue-300 font-medium text-sm sm:text-base">Languages & Frameworks</p>
-        </div>
-      </div>
-      
-      <!-- Floating Tech Logos -->
-      <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
-        <div
-          v-for="(tech, index) in techStack"
-          :key="tech.name"
-          class="tech-logo group/tech cursor-pointer"
-          :style="{ animationDelay: `${index * -0.5}s` }"
-        >
-          <div 
-            class="relative w-16 h-16 sm:w-20 sm:h-20 bg-gray-700/30 rounded-xl border border-gray-600/30 p-3 transition-all duration-300 group-hover/tech:scale-110 group-hover/tech:shadow-lg hover:border-opacity-60"
-            :style="{ borderColor: `${tech.color}40` }"
-          >
-            <img 
-              :src="tech.logo" 
-              :alt="tech.name"
-              class="w-full h-full object-contain transition-transform duration-300 group-hover/tech:scale-105"
-              loading="lazy"
-            />
-            
-            <!-- Tooltip -->
-            <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
-              {{ tech.name }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 
+          <!-- Tech Stack Section -->
+          <div class="relative flex items-center">
+            <div class="w-full">
+              <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-400/20 shadow-xl hover:shadow-2xl hover:shadow-blue-400/20 transition-all duration-500 group">
+                <!-- Tech Stack Header -->
+                <div class="flex items-center space-x-3 mb-6">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 bg-[#1A1A1A] rounded-lg flex items-center justify-center shadow-md">
+                    <svg class="w-7 h-7" fill="none" stroke="#60A5FA" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-blue-200 transition-colors duration-300">
+                      Tech Stack
+                    </h3>
+                    <p class="text-blue-300 font-medium text-sm sm:text-base">Languages & Frameworks</p>
+                  </div>
+                </div>
+                
+                <!-- Floating Tech Logos -->
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+                  <div
+                    v-for="(tech, index) in techStack"
+                    :key="tech.name"
+                    class="tech-logo group/tech cursor-pointer"
+                    :style="{ animationDelay: `${index * -0.5}s` }"
+                  >
+                    <div 
+                      class="relative w-16 h-16 sm:w-20 sm:h-20 bg-gray-700/30 rounded-xl border border-gray-600/30 p-3 transition-all duration-300 group-hover/tech:scale-110 group-hover/tech:shadow-lg hover:border-opacity-60"
+                      :style="{ borderColor: `${tech.color}40` }"
+                    >
+                      <img 
+                        :src="tech.logo" 
+                        :alt="tech.name"
+                        class="w-full h-full object-contain transition-transform duration-300 group-hover/tech:scale-105"
+                        loading="lazy"
+                      />
+                      
+                      <!-- Tooltip -->
+                      <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+                        {{ tech.name }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- CTA Section - Unified responsive design -->
         <div class="text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 border border-sky-400/20 shadow-2xl mt-20">
@@ -522,7 +520,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { RouterLink } from 'vue-router'
 
 // Parallax effect for image
@@ -533,7 +531,6 @@ const scrollY = ref(0)
 const leetcodeStats = ref(null)
 const leetcodeLoading = ref(true)
 const leetcodeError = ref(null)
-const leetcodeChart = ref(null)
 
 const techStack = ref([
   {
@@ -567,10 +564,10 @@ const techStack = ref([
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg'
   },
   {
-  name: 'Tailwind CSS',
-  color: '#06B6D4',
-  logo: 'https://www.svgrepo.com/show/333609/tailwind-css.svg'
-}
+    name: 'Tailwind CSS',
+    color: '#06B6D4',
+    logo: 'https://www.svgrepo.com/show/374118/tailwind.svg'
+  }
 ])
 
 // Function to update title based on screen size
@@ -652,69 +649,6 @@ const fetchLeetCodeStats = async () => {
   }
 }
 
-// Create pie chart function
-const createLeetCodeChart = () => {
-  if (!leetcodeChart.value || !leetcodeStats.value) return
-  
-  const canvas = leetcodeChart.value
-  const ctx = canvas.getContext('2d')
-  
-  // Clear canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  
-  const centerX = canvas.width / 2
-  const centerY = canvas.height / 2
-  const radius = Math.min(centerX, centerY) - 10
-  
-  const data = [
-    { label: 'Easy', value: leetcodeStats.value.easySolved, color: '#22c55e' },
-    { label: 'Medium', value: leetcodeStats.value.mediumSolved, color: '#eab308' },
-    { label: 'Hard', value: leetcodeStats.value.hardSolved, color: '#ef4444' }
-  ]
-  
-  const total = data.reduce((sum, item) => sum + item.value, 0)
-  
-  if (total === 0) return
-  
-  let currentAngle = -Math.PI / 2 // Start from top
-  
-  data.forEach(item => {
-    const sliceAngle = (item.value / total) * 2 * Math.PI
-    
-    // Draw slice
-    ctx.beginPath()
-    ctx.moveTo(centerX, centerY)
-    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle)
-    ctx.closePath()
-    ctx.fillStyle = item.color
-    ctx.fill()
-    
-    // Add subtle border
-    ctx.strokeStyle = '#1f2937'
-    ctx.lineWidth = 2
-    ctx.stroke()
-    
-    currentAngle += sliceAngle
-  })
-  
-  // Add center circle for donut effect
-  ctx.beginPath()
-  ctx.arc(centerX, centerY, radius * 0.6, 0, 2 * Math.PI)
-  ctx.fillStyle = '#1f2937'
-  ctx.fill()
-  
-  // Add total count in center
-  ctx.fillStyle = '#ffffff'
-  ctx.font = 'bold 16px system-ui'
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
-  ctx.fillText(total.toString(), centerX, centerY - 5)
-  
-  ctx.font = '10px system-ui'
-  ctx.fillStyle = '#9ca3af'
-  ctx.fillText('Solved', centerX, centerY + 10)
-}
-
 // Set up lifecycle hooks
 onMounted(() => {
   // Add event listeners
@@ -727,221 +661,80 @@ onMounted(() => {
   
   // Fetch LeetCode stats
   fetchLeetCodeStats()
-  
-  // Create chart after stats are loaded
-  nextTick(() => {
-    if (leetcodeStats.value) {
-      createLeetCodeChart()
-    }
-  })
-  
-  // Add custom animations to document head if not already present
-  if (!document.querySelector('#custom-animations')) {
-    const style = document.createElement('style')
-    style.id = 'custom-animations'
-    style.textContent = `
-      @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(5deg); }
-      }
-      
-      @keyframes levitate {
-        0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-        50% { transform: translateY(-20px) rotate(10deg) scale(1.1); }
-      }
-      
-      @keyframes float-slow {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-15px) rotate(3deg); }
-      }
-      
-      @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      
-      @keyframes pulse-glow {
-        0%, 100% { opacity: 0.4; }
-        50% { opacity: 0.8; }
-      }
-      
-      @keyframes spin-slow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
-      
-      @keyframes spin-reverse {
-        from { transform: rotate(360deg); }
-        to { transform: rotate(0deg); }
-      }
-      
-      @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-      }
-      
-      @keyframes fade-in {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes slide-up {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes fade-in-delay {
-        0% { opacity: 0; transform: translateY(20px); }
-        60% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes fade-in-delay-2 {
-        0% { opacity: 0; transform: translateY(20px); }
-        70% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes fade-in-up {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      .animate-float {
-        animation: float 6s ease-in-out infinite;
-      }
-      
-      .animate-levitate {
-        animation: levitate 4s ease-in-out infinite;
-      }
-      
-      .animate-float-slow {
-        animation: float-slow 8s ease-in-out infinite;
-      }
-      
-      .animate-gradient {
-        animation: gradient 3s ease infinite;
-      }
-      
-      .animate-pulse-glow {
-        animation: pulse-glow 2s ease-in-out infinite;
-      }
-      
-      .animate-spin-slow {
-        animation: spin-slow 20s linear infinite;
-      }
-      
-      .animate-spin-reverse {
-        animation: spin-reverse 15s linear infinite;
-      }
-      
-      .animate-shimmer {
-        animation: shimmer 2s ease-in-out infinite;
-      }
-      
-      .animate-fade-in {
-        animation: fade-in 1s ease-out forwards;
-      }
-      
-      .animate-slide-up {
-        animation: slide-up 1s ease-out forwards;
-      }
-      
-      .animate-fade-in-delay {
-        animation: fade-in-delay 2s ease-out forwards;
-      }
-      
-      .animate-fade-in-delay-2 {
-        animation: fade-in-delay-2 2.5s ease-out forwards;
-      }
-      
-      .animate-fade-in-up {
-        animation: fade-in-up 1s ease-out forwards;
-      }
-      
-      /* Tech stack specific animations */
-      .tech-logo {
-        transition: all 0.3s ease;
-        animation-delay: var(--delay);
-      }
-      
-      .tech-logo:hover {
-        animation: levitate 2s ease-in-out infinite;
-      }
-      
-      .bg-size-200 {
-        background-size: 200% 200%;
-      }
-      
-      .parallax-container {
-        transform-style: preserve-3d;
-      }
-      
-      .parallax-image-wrapper {
-        transition: transform 0.1s ease-out;
-        will-change: transform;
-      }
-      
-      .border-animation-wrapper {
-        position: relative;
-      }
-      
-      /* Smooth transitions for better performance */
-      * {
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      
-      /* Optimize for mobile performance */
-      @media (max-width: 768px) {
-        .parallax-image-wrapper {
-          transition: transform 0.2s ease-out;
-        }
-        
-        .animate-spin-slow {
-          animation-duration: 30s;
-        }
-        
-        .animate-spin-reverse {
-          animation-duration: 25s;
-        }
-      }
-    `
-    document.head.appendChild(style)
-  }
 })
 
-// Watch for leetcodeStats changes to update chart
-const watchLeetcodeStats = () => {
-  if (leetcodeStats.value && !leetcodeLoading.value) {
-    nextTick(() => {
-      createLeetCodeChart()
-    })
+onBeforeUnmount(() => {
+  // Clean up event listeners
+  window.removeEventListener("resize", updateTitle)
+  window.removeEventListener("scroll", throttledScrollHandler)
+})
+</script>
+
+<style scoped>
+/* Custom animations */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-gradient {
+  animation: gradient 6s ease infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+/* Tech logo animation */
+.tech-logo {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom delays for staggered animations */
+.delay-1000 { animation-delay: 1s; }
+.delay-1500 { animation-delay: 1.5s; }
+.delay-2000 { animation-delay: 2s; }
+.delay-2500 { animation-delay: 2.5s; }
+.delay-3000 { animation-delay: 3s; }
+.delay-4000 { animation-delay: 4s; }
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 1.5rem);
   }
 }
 
-// Cleanup on unmount
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateTitle)
-  window.removeEventListener("scroll", throttledScrollHandler)
-  
-  // Remove custom styles if component is destroyed
-  const customStyles = document.querySelector('#custom-animations')
-  if (customStyles) {
-    customStyles.remove()
-  }
-})
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
 
-// Expose reactive variables for template use
-defineExpose({
-  imageScale,
-  scrollY,
-  leetcodeStats,
-  leetcodeLoading,
-  leetcodeError,
-  leetcodeChart,
-  techStack,
-  createLeetCodeChart,
-  fetchLeetCodeStats
-})
-</script>
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0ea5e9, #06b6d4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0284c7, #0891b2);
+}
+</style>
