@@ -17,7 +17,7 @@
       <!-- Projects Content -->
       <main class="container mx-auto px-4 py-16 flex-grow">
         <!-- Header -->
-        <div class="text-center mb-24">
+        <div class="text-center mb-24 reveal-element">
           <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-sky-200 to-white bg-clip-text text-transparent">
             My Projects
           </h1>
@@ -25,15 +25,13 @@
           <div class="w-24 h-1 bg-gradient-to-r from-sky-400 to-cyan-300 mx-auto rounded-full"></div>
         </div>
 
-        <!-- Filter Buttons -->
-       
-
         <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div 
-            v-for="project in filteredProjects" 
+            v-for="(project, index) in filteredProjects" 
             :key="project.id"
-            class="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-sky-400/10 hover:border-sky-400/30 transition-all duration-300 overflow-hidden hover:scale-105"
+            class="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-sky-400/10 hover:border-sky-400/30 transition-all duration-300 overflow-hidden hover:scale-105 reveal-project"
+            :style="{ transitionDelay: `${index * 0.1}s` }"
           >
             <!-- Project Image -->
             <div class="w-full h-48 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center relative overflow-hidden">
@@ -91,8 +89,24 @@
                   Certificate
                 </button>
                 
-                <!-- GitHub Button -->
+                <!-- Link Button for Ashok Roadlines, GitHub for others -->
                 <button 
+                  v-if="project.link"
+                  @click="openLink(project)"
+                  :class="[
+                    'py-2 px-4 rounded-lg transition-all duration-300 text-sm font-medium flex items-center justify-center gap-2',
+                    project.hasCertificate 
+                      ? 'flex-1 bg-gray-700/50 text-gray-300 hover:bg-gray-700' 
+                      : 'w-full bg-gradient-to-r from-sky-400/20 to-cyan-300/20 text-sky-300 hover:from-sky-400/30 hover:to-cyan-300/30'
+                  ]"
+                >
+                  <i class="pi pi-external-link"></i>
+                  View Project
+                </button>
+                
+                <!-- GitHub Button (for projects with GitHub) -->
+                <button 
+                  v-else-if="project.github"
                   @click="openGitHub(project)"
                   :class="[
                     'py-2 px-4 rounded-lg transition-all duration-300 text-sm font-medium flex items-center justify-center gap-2',
@@ -110,18 +124,16 @@
         </div>
 
         
-        <!-- Mobile CTA - Updated to match navbar -->
-        <div class="block sm:hidden text-center mt-12">
+        <!-- Mobile CTA -->
+        <div class="block sm:hidden text-center mt-12 reveal-element">
           <div class="bg-gradient-to-r from-sky-400/10 via-cyan-300/10 to-sky-400/10 backdrop-blur-sm rounded-2xl p-6 border border-sky-400/20 shadow-xl mx-4 animate-fade-in-up">
             <h3 class="text-lg font-semibold mb-3 text-white">Let's create something amazing</h3>
             <RouterLink to="/contact">
               <button 
                 class="group relative px-6 py-3 text-sm font-semibold bg-gradient-to-r from-blue-400 via-cyan-300 to-white text-black rounded-lg transition-all duration-500 ease-out transform hover:scale-105 hover:from-blue-300 hover:via-cyan-200 hover:to-blue-100 overflow-hidden shadow-lg hover:shadow-xl"
               >
-                <!-- Animated background glow -->
                 <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
                 
-                <!-- Main content -->
                 <div class="relative z-10 flex items-center space-x-2">
                   <span>Get in Touch</span>
                   <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,21 +145,18 @@
           </div>
         </div>
 
-        <!-- Desktop CTA - Updated to match navbar -->
-        <div class="hidden sm:block text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 border border-sky-400/20 shadow-2xl mt-20">
+        <!-- Desktop CTA -->
+        <div class="hidden sm:block text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 border border-sky-400/20 shadow-2xl mt-20 reveal-element">
           <h3 class="text-2xl lg:text-3xl font-bold mb-4 text-white">Ready to work together?</h3>
           <p class="text-base text-gray-300 mb-6 max-w-xl mx-auto">Let's create something amazing together. I'm always excited to take on new challenges and collaborate on innovative projects.</p>
           <RouterLink to="/contact">
             <button 
               class="group relative px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-400 via-cyan-300 to-white text-black rounded-lg transition-all duration-500 ease-out transform hover:scale-105 hover:from-blue-300 hover:via-cyan-200 hover:to-blue-100 overflow-hidden shadow-lg hover:shadow-xl"
             >
-              <!-- Animated background glow -->
               <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
               
-              <!-- Subtle border effect -->
               <div class="absolute -inset-1 bg-gradient-to-r from-blue-400/10 via-cyan-300/10 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
-              <!-- Main content -->
               <div class="relative z-10 flex items-center space-x-2">
                 <span>Start a Project</span>
                 <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,7 +164,6 @@
                 </svg>
               </div>
               
-              <!-- Floating particles effect -->
               <div class="absolute inset-0 pointer-events-none">
                 <div class="absolute top-2 left-6 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-700 delay-100"></div>
                 <div class="absolute top-4 right-8 w-0.5 h-0.5 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700 delay-300"></div>
@@ -168,7 +176,7 @@
       <Footer />
     </div>
 
-    <!-- Certificate Modal - Fixed as proper popup -->
+    <!-- Certificate Modal -->
     <div 
       v-if="showModal" 
       class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
@@ -204,7 +212,6 @@
 
         <!-- Modal Footer -->
         <div class="p-4 border-t border-gray-700 bg-gray-800/95">
-        
         </div>
       </div>
     </div>
@@ -221,10 +228,22 @@ const categories = ['All', 'Web Development', 'University Project', 'Personal Pr
 const showModal = ref(false)
 const selectedProject = ref(null)
 
-// Projects data - removed certificate orientation properties
+// Projects data - Updated: Removed TaskFlow and Crypto Tracker, Added Ashok Roadlines
 const projects = ref([
-  {
+{
     id: 1,
+    title: 'Ashok Roadlines Website',
+    description: 'Designed and developed a complete website for Ashok Roadlines, a transportation and logistics company. Built a modern, responsive platform using Vue.js, Tailwind CSS, and PrimeVue to showcase services and enhance their digital presence.',
+    category: 'Web Development',
+    technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'JavaScript'],
+    year: '2025',
+    icon: 'pi pi-truck',
+    link: 'https://ashokroadlines.in',
+    hasCertificate: false,
+    imageUrl: new URL('@/assets/ar.png', import.meta.url).href,
+  },
+  {
+    id: 2,
     title: 'Pom Power Web App',
     description: 'Developed a responsive web application for the Pom Power productivity platform during my internship at Pom Power, Bengaluru. Built with Vue.js and Tailwind CSS.',
     category: 'Web Development',
@@ -237,7 +256,7 @@ const projects = ref([
     imageUrl: new URL('@/assets/pom.png', import.meta.url).href,
   },
   {
-    id: 2,
+    id: 3,
     title: 'Mentor-Mentee App',
     description: 'University-wide mentor-mentee management application for CHRIST University. Built dynamic, responsive UI components and collaborated with team members.',
     category: 'University Project',
@@ -250,18 +269,6 @@ const projects = ref([
     imageUrl: new URL('@/assets/christ.avif', import.meta.url).href,
   },
   {
-    id: 3,
-    title: 'TaskFlow - Task Management App',
-    description: 'Full-stack task management application with secure authentication, MySQL database integration, and comprehensive API documentation.',
-    category: 'Personal Project',
-    technologies: ['Java', 'Spring Boot', 'React.js', 'Tailwind CSS', 'MySQL', 'JWT'],
-    year: '2024',
-    icon: 'pi pi-check-square',
-    github: 'https://github.com/AaravUppal/taskflow',
-    hasCertificate: false,
-    imageUrl: new URL('@/assets/taskflow.png', import.meta.url).href,
-  },
-  {
     id: 4,
     title: 'Personal Portfolio Website',
     description: 'Designed and developed a responsive portfolio website to showcase my projects, skills, and resume. Built using Vue.js, Tailwind CSS, and PrimeVue for an elegant, modern UI.',
@@ -272,19 +279,7 @@ const projects = ref([
     github: 'https://github.com/AaravUppal/portfolio',
     hasCertificate: false,
     imageUrl: new URL('@/assets/website.png', import.meta.url).href,
-  },
-    {
-  id: 5,
-  title: 'Crypto Portfolio Tracker',
-  description: 'Built a responsive crypto portfolio tracker with mock trading functionality for BTC, ETH, USDT, USDC, XMR, and SOL. Features include live prices, portfolio dashboard, buy/sell trades, and authentication. Developed using Next.js, TypeScript, Tailwind CSS, and CoinGecko API.',
-  category: 'Personal Project',
-  technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'CoinGecko API', 'NextAuth.js'],
-  year: '2025',
-  icon: 'pi pi-wallet',
-  github: 'https://github.com/AaravUppal/crypto-portfolio-tracker',
-  hasCertificate: false,
-  imageUrl: new URL('@/assets/crypto-tracker.png', import.meta.url).href
-}
+  }
 ])
 
 // Computed filtered projects
@@ -299,14 +294,12 @@ const filteredProjects = computed(() => {
 const showCertificate = (project) => {
   selectedProject.value = project
   showModal.value = true
-  // Prevent body scroll when modal is open
   document.body.style.overflow = 'hidden'
 }
 
 const closeModal = () => {
   showModal.value = false
   selectedProject.value = null
-  // Restore body scroll
   document.body.style.overflow = 'auto'
 }
 
@@ -316,13 +309,35 @@ const openGitHub = (project) => {
   }
 }
 
-const downloadCertificate = () => {
-  if (selectedProject.value?.certificateUrl) {
-    const link = document.createElement('a')
-    link.href = selectedProject.value.certificateUrl
-    link.download = `${selectedProject.value.title}_Certificate`
-    link.click()
+const openLink = (project) => {
+  if (project.link) {
+    window.open(project.link, '_blank')
   }
+}
+
+// Scroll Reveal Animation Setup
+const setupScrollReveal = () => {
+  const revealElements = document.querySelectorAll('.reveal-element, .reveal-project')
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  }
+  
+  const observerCallback = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-active')
+      }
+    })
+  }
+  
+  const observer = new IntersectionObserver(observerCallback, observerOptions)
+  
+  revealElements.forEach(element => {
+    observer.observe(element)
+  })
 }
 
 // Function to update title
@@ -342,17 +357,37 @@ onMounted(() => {
   window.addEventListener("resize", updateTitle);
   document.addEventListener("keydown", handleEscapeKey);
   updateTitle();
+  
+  // Setup scroll reveal animations
+  setupScrollReveal()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", updateTitle);
   document.removeEventListener("keydown", handleEscapeKey);
-  // Ensure body scroll is restored
   document.body.style.overflow = 'auto'
 })
 </script>
 
 <style scoped>
+/* Scroll Reveal Animation Styles */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-project {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

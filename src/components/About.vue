@@ -18,7 +18,7 @@
       <!-- About Content -->
       <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 flex-grow">
         <!-- Header Section -->
-        <div class="text-center mb-16 sm:mb-24">
+        <div class="text-center mb-16 sm:mb-24 reveal-element">
           <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-sky-200 to-white bg-clip-text text-transparent">
             About Me
           </h1>
@@ -27,10 +27,8 @@
 
         <!-- Main Content Grid -->
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-16">
-         
-
           <!-- Right Column - Introduction -->
-          <div class="space-y-8 lg:space-y-12">
+          <div class="space-y-8 lg:space-y-12 reveal-element">
             <!-- Introduction -->
             <div class="space-y-6">
               <h2 class="text-2xl sm:text-3xl font-semibold text-white">
@@ -38,7 +36,7 @@
               </h2>
               <div class="space-y-4 text-gray-300 leading-relaxed">
                 <p class="text-lg">
-                  I’m an aspiring software developer with a strong passion for building innovative and impactful digital solutions.</p>
+                  I'm an aspiring software developer with a strong passion for building innovative and impactful digital solutions.</p>
                 <p>
                   What started as simple curiosity has grown into a genuine love for building digital experiences that matter. I care about writing clean code, designing with intention, and constantly learning to get better at what I do. </p>
                 <p>
@@ -50,7 +48,7 @@
         </div>
 
         <!-- Education Section -->
-        <div class="max-w-6xl mx-auto mb-16">
+        <div class="max-w-6xl mx-auto mb-16 reveal-element">
           <h2 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center">
             Education
           </h2>
@@ -86,14 +84,14 @@
         </div>
 
         <!-- Technical Skills Section -->
-        <div class="max-w-6xl mx-auto mb-16">
+        <div class="max-w-6xl mx-auto mb-16 reveal-element">
           <h2 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center">
             Technical Skills
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             <!-- Programming Languages -->
-            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
+            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10 reveal-skill">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
                   <i class="pi pi-code text-black text-lg"></i>
@@ -126,7 +124,7 @@
             </div>
 
             <!-- Web Technologies -->
-            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
+            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10 reveal-skill">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
                   <i class="pi pi-globe text-black text-lg"></i>
@@ -154,7 +152,7 @@
             </div>
 
             <!-- Frameworks & Libraries -->
-            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
+            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10 reveal-skill">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
                   <i class="pi pi-sitemap text-black text-lg"></i>
@@ -182,7 +180,7 @@
             </div>
 
             <!-- Database & Tools -->
-            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
+            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10 reveal-skill">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
                   <i class="pi pi-database text-black text-lg"></i>
@@ -209,29 +207,30 @@
               </div>
             </div>
 
-            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
-  <div class="flex items-center mb-6">
-    <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
-      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"></path>
-      </svg>
-    </div>
-    <h3 class="font-semibold text-white text-lg">Version Control</h3>
-  </div>
-  <div class="space-y-3">
-    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
-      <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
-      <span class="text-gray-300">Git</span>
-    </div>
-    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
-      <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
-      <span class="text-gray-300">GitHub</span>
-    </div>
-  </div>
-</div>
+            <!-- Version Control -->
+            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10 reveal-skill">
+              <div class="flex items-center mb-6">
+                <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"></path>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-white text-lg">Version Control</h3>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
+                  <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
+                  <span class="text-gray-300">Git</span>
+                </div>
+                <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700/30 transition-colors">
+                  <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
+                  <span class="text-gray-300">GitHub</span>
+                </div>
+              </div>
+            </div>
 
             <!-- Others -->
-            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10">
+            <div class="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-sky-400/10 hover:border-sky-400/20 transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/10 reveal-skill">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-xl flex items-center justify-center mr-4">
                   <i class="pi pi-cog text-black text-lg"></i>
@@ -253,7 +252,7 @@
         </div>
 
         <!-- Currently Learning -->
-        <div class="max-w-4xl mx-auto mb-16">
+        <div class="max-w-4xl mx-auto mb-16 reveal-element">
           <h2 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center">
             Currently Learning
           </h2>
@@ -282,7 +281,7 @@
         </div>
 
         <!-- Communication Section -->
-        <div class="max-w-4xl mx-auto mb-16">
+        <div class="max-w-4xl mx-auto mb-16 reveal-element">
           <h2 class="text-2xl sm:text-3xl font-semibold text-white mb-8 text-center">
             Communication
           </h2>
@@ -325,7 +324,7 @@
         </div>
 
         <!-- Bottom CTA Section -->
-        <div class="text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 border border-sky-400/20 shadow-2xl">
+        <div class="text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 border border-sky-400/20 shadow-2xl reveal-element">
           <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white">Ready to work together?</h3>
           <p class="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 max-w-xl mx-auto">Let's create something amazing together. I'm always excited to take on new challenges and collaborate on innovative projects.</p>
           <RouterLink to="/contact">
@@ -370,10 +369,38 @@ const updateTitle = () => {
   document.title = window.innerWidth < 500 ? "About - AU" : "About - Aarav Uppal";
 }
 
+// Scroll Reveal Animation Setup
+const setupScrollReveal = () => {
+  const revealElements = document.querySelectorAll('.reveal-element, .reveal-skill')
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  }
+  
+  const observerCallback = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-active')
+      }
+    })
+  }
+  
+  const observer = new IntersectionObserver(observerCallback, observerOptions)
+  
+  revealElements.forEach(element => {
+    observer.observe(element)
+  })
+}
+
 // Set up lifecycle hooks
 onMounted(() => {
   window.addEventListener("resize", updateTitle);
   updateTitle(); // Initial call
+  
+  // Setup scroll reveal animations
+  setupScrollReveal()
 })
 
 onBeforeUnmount(() => {
@@ -382,6 +409,49 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+/* Scroll Reveal Animation Styles */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-skill {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation for skill cards */
+.reveal-skill:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.reveal-skill:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.reveal-skill:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.reveal-skill:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.reveal-skill:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.reveal-skill:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
