@@ -32,7 +32,7 @@
       <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-20 flex-grow">
         
         <!-- Main Hero Layout - Responsive Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 sm:mt-8 sm:mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 sm:mt-8 sm:mb-20 reveal-element">
           
           <!-- Left Side - Introduction (Mobile: Top, Desktop: Left) -->
           <div class="order-2 lg:order-1 text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8">
@@ -163,10 +163,10 @@
           </div>
         </div>
 
-        <!-- Experience Section - Enhanced and Minimalistic -->
+        <!-- Experience Section - Dynamic with v-for -->
         <section class="max-w-4xl mx-auto py-8 sm:py-12 lg:py-16">
           <!-- Section Header -->
-          <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div class="text-center mb-8 sm:mb-12 lg:mb-16 reveal-element">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white via-sky-200 to-cyan-200 bg-clip-text text-transparent animate-gradient bg-size-200 mb-3 sm:mb-4">
               Experience
             </h2>
@@ -178,108 +178,96 @@
             <!-- Central Timeline Line -->
             <div class="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sky-400 via-cyan-300 to-sky-400 transform sm:-translate-x-px"></div>
 
-            <!-- Experience Items -->
+            <!-- Experience Items with v-for -->
             <div class="space-y-8 sm:space-y-12 lg:space-y-16">
-              <!-- Pom Power -->
-              <div class="relative flex items-center">
+              <div 
+                v-for="(experience, index) in experiences" 
+                :key="index"
+                class="relative flex items-center reveal-element"
+              >
                 <!-- Timeline Dot -->
-                <div class="absolute left-4 sm:left-1/2 w-3 h-3 sm:w-6 sm:h-6 bg-gradient-to-r from-sky-400 to-cyan-300 rounded-full border-2 sm:border-4 border-gray-900 shadow-lg shadow-sky-400/30 transform -translate-x-1/2 z-10"></div>
+                <div 
+                  class="absolute left-4 sm:left-1/2 w-3 h-3 sm:w-6 sm:h-6 rounded-full border-2 sm:border-4 border-gray-900 shadow-lg transform -translate-x-1/2 z-10"
+                  :class="`bg-gradient-to-r ${experience.dotGradient} ${experience.shadowColor}`"
+                ></div>
 
-                <!-- Content Card -->
-                <div class="ml-8 sm:ml-0 sm:w-1/2 sm:pr-6 lg:pr-12">
-                  <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 border border-sky-400/20 shadow-xl hover:shadow-2xl hover:shadow-sky-400/20 transition-all duration-500 group">
+                <!-- Content Card - Alternating sides on desktop -->
+                <div 
+                  class="ml-8 sm:ml-0 sm:w-1/2"
+                  :class="index % 2 === 0 ? 'sm:pr-6 lg:pr-12' : 'sm:ml-auto sm:pl-6 lg:pl-12'"
+                >
+                  <div 
+                    class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-xl hover:shadow-2xl transition-all duration-500 group"
+                    :class="`border ${experience.borderColor} ${experience.hoverShadow}`"
+                  >
                     <!-- Company Icon -->
                     <div class="flex items-center space-x-3 mb-3 sm:mb-4">
-                      <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-sky-400 to-cyan-300 rounded-lg flex items-center justify-center shadow-lg">
-                        <!-- Battery/Power Icon -->
+                      <div 
+                        class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center shadow-lg"
+                        :class="`bg-gradient-to-br ${experience.iconGradient}`"
+                      >
+                        <!-- Dynamic Icon SVG -->
                         <svg class="w-5 h-5 sm:w-6 sm:h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M16 4h-1V2h-6v2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H8V6h8v12z"/>
+                          <path :d="experience.iconPath"/>
                         </svg>
                       </div>
                       <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-200 transition-colors duration-300">
-                          Frontend Developer Intern
+                        <h3 
+                          class="text-lg sm:text-xl font-bold text-white transition-colors duration-300"
+                          :class="`group-hover:${experience.titleHoverColor}`"
+                        >
+                          {{ experience.title }}
                         </h3>
-                        <p class="text-sky-300 font-medium text-sm sm:text-base">Pom Power</p>
+                        <p 
+                          class="font-medium text-sm sm:text-base"
+                          :class="experience.companyColor"
+                        >
+                          {{ experience.company }}
+                        </p>
                       </div>
                     </div>
                     
                     <!-- Duration -->
                     <div class="flex items-center space-x-2 mb-3 sm:mb-4">
-                      <svg class="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+                      <svg 
+                        class="w-3 h-3 sm:w-4 sm:h-4"
+                        :class="experience.durationIconColor"
+                        fill="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                       </svg>
-                      <span class="text-xs sm:text-sm text-gray-300">Apr 2024 – Aug 2024 • Bengaluru</span>
+                      <span class="text-xs sm:text-sm text-gray-300">{{ experience.duration }}</span>
                     </div>
                     
                     <!-- Description -->
                     <p class="text-sm sm:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">
-                      Co-developed Pom Power's productivity platform used by customers to manage tasks and schedules. Built responsive UI components with Vue.js and Tailwind CSS, focusing on user experience and performance optimization.
+                      {{ experience.description }}
                     </p>
                     
                     <!-- Skills Tags -->
                     <div class="flex flex-wrap gap-2">
-                      <span class="px-2 sm:px-3 py-1 bg-sky-500/20 text-sky-300 rounded-full text-xs font-medium border border-sky-500/30">Vue.js</span>
-                      <span class="px-2 sm:px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs font-medium border border-cyan-500/30">Tailwind CSS</span>
-                      <span class="px-2 sm:px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30">Frontend</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- CHRIST University -->
-              <div class="relative flex items-center">
-                <!-- Timeline Dot -->
-                <div class="absolute left-4 sm:left-1/2 w-3 h-3 sm:w-6 sm:h-6 bg-gradient-to-r from-green-400 to-emerald-300 rounded-full border-2 sm:border-4 border-gray-900 shadow-lg shadow-green-400/30 transform -translate-x-1/2 z-10"></div>
-
-                <!-- Content Card -->
-                <div class="ml-8 sm:ml-0 sm:w-1/2 sm:ml-auto sm:pl-6 lg:pl-12">
-                  <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-400/20 shadow-xl hover:shadow-2xl hover:shadow-green-400/20 transition-all duration-500 group">
-                    <!-- Company Icon -->
-                    <div class="flex items-center space-x-3 mb-3 sm:mb-4">
-                      <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-400 to-emerald-300 rounded-lg flex items-center justify-center shadow-lg">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-green-200 transition-colors duration-300">
-                          Internship
-                        </h3>
-                        <p class="text-green-300 font-medium text-sm sm:text-base">CHRIST University</p>
-                      </div>
-                    </div>
-                    
-                    <!-- Duration -->
-                    <div class="flex items-center space-x-2 mb-3 sm:mb-4">
-                      <svg class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                      </svg>
-                      <span class="text-xs sm:text-sm text-gray-300">Jul 2024 – Sep 2024 • Bengaluru</span>
-                    </div>
-                    
-                    <!-- Description -->
-                    <p class="text-sm sm:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">
-                      Contributed as a Frontend Developer to building the official mentor-mentee platform used across CHRIST University. Helped develop dynamic user interfaces using Vue.js, Tailwind CSS, and PrimeVue to enhance student-mentor interactions university-wide.
-                    </p>
-                    
-                    <!-- Skills Tags -->
-                    <div class="flex flex-wrap gap-2">
-                      <span class="px-2 sm:px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30">Vue.js</span>
-                      <span class="px-2 sm:px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/30">PrimeVue</span>
-                      <span class="px-2 sm:px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-xs font-medium border border-teal-500/30">Tailwind CSS</span>
+                      <span 
+                        v-for="(skill, skillIndex) in experience.skills" 
+                        :key="skillIndex"
+                        class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium"
+                        :class="`${skill.bgColor} ${skill.textColor} ${skill.borderColor}`"
+                      >
+                        {{ skill.name }}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
         </section>
 
         <!-- Enhanced Stats Section -->
         <div class="space-y-8">
           <!-- LeetCode Stats -->
-          <div class="w-full flex justify-center px-4 sm:px-6 lg:px-8">
+          <div class="w-full flex justify-center px-4 sm:px-6 lg:px-8 reveal-element">
             <div class="w-full max-w-md sm:max-w-lg lg:max-w-xl">
               <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-orange-400/20 shadow-xl hover:shadow-2xl hover:shadow-orange-400/20 transition-all duration-500 group">
                 
@@ -435,7 +423,7 @@
           </div>
 
           <!-- Tech Stack Section -->
-          <div class="relative flex items-center">
+          <div class="relative flex items-center reveal-element">
             <div class="w-full">
               <div class="bg-gradient-to-br from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-400/20 shadow-xl hover:shadow-2xl hover:shadow-blue-400/20 transition-all duration-500 group">
                 <!-- Tech Stack Header -->
@@ -485,7 +473,7 @@
         </div>
 
         <!-- CTA Section - Unified responsive design -->
-        <div class="text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 border border-sky-400/20 shadow-2xl mt-20">
+        <div class="text-center bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 border border-sky-400/20 shadow-2xl mt-20 reveal-element">
           <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-white">Ready to work together?</h3>
           <p class="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 max-w-xl mx-auto">Let's create something amazing together. I'm always excited to take on new challenges and collaborate on innovative projects.</p>
           <RouterLink to="/contact">
@@ -531,6 +519,95 @@ const scrollY = ref(0)
 const leetcodeStats = ref(null)
 const leetcodeLoading = ref(true)
 const leetcodeError = ref(null)
+
+// Experience Timeline Data - Easily manageable in script
+const experiences = ref([
+  {
+    title: 'Frontend Developer Intern',
+    company: 'Pom Power',
+    duration: 'Apr 2024 – Aug 2024 • Bengaluru',
+    description: 'Co-developed Pom Power\'s productivity platform used by customers to manage tasks and schedules. Built responsive UI components with Vue.js and Tailwind CSS, focusing on user experience and performance optimization.',
+    skills: [
+      { name: 'Vue.js', bgColor: 'bg-sky-500/20', textColor: 'text-sky-300', borderColor: 'border border-sky-500/30' },
+      { name: 'Tailwind CSS', bgColor: 'bg-cyan-500/20', textColor: 'text-cyan-300', borderColor: 'border border-cyan-500/30' },
+      { name: 'Frontend', bgColor: 'bg-blue-500/20', textColor: 'text-blue-300', borderColor: 'border border-blue-500/30' }
+    ],
+    // Styling classes
+    dotGradient: 'from-sky-400 to-cyan-300',
+    shadowColor: 'shadow-sky-400/30',
+    borderColor: 'border-sky-400/20',
+    hoverShadow: 'hover:shadow-sky-400/20',
+    iconGradient: 'from-sky-400 to-cyan-300',
+    titleHoverColor: 'text-sky-200',
+    companyColor: 'text-sky-300',
+    durationIconColor: 'text-cyan-400',
+    iconPath: 'M16 4h-1V2h-6v2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H8V6h8v12z'
+  },
+  {
+    title: 'Internship',
+    company: 'CHRIST University',
+    duration: 'Jul 2024 – Sep 2024 • Bengaluru',
+    description: 'Contributed as a Frontend Developer to building the official mentor-mentee platform used across CHRIST University. Helped develop dynamic user interfaces using Vue.js, Tailwind CSS, and PrimeVue to enhance student-mentor interactions university-wide.',
+    skills: [
+      { name: 'Vue.js', bgColor: 'bg-green-500/20', textColor: 'text-green-300', borderColor: 'border border-green-500/30' },
+      { name: 'PrimeVue', bgColor: 'bg-emerald-500/20', textColor: 'text-emerald-300', borderColor: 'border border-emerald-500/30' },
+      { name: 'Tailwind CSS', bgColor: 'bg-teal-500/20', textColor: 'text-teal-300', borderColor: 'border border-teal-500/30' }
+    ],
+    // Styling classes
+    dotGradient: 'from-green-400 to-emerald-300',
+    shadowColor: 'shadow-green-400/30',
+    borderColor: 'border-green-400/20',
+    hoverShadow: 'hover:shadow-green-400/20',
+    iconGradient: 'from-green-400 to-emerald-300',
+    titleHoverColor: 'text-green-200',
+    companyColor: 'text-green-300',
+    durationIconColor: 'text-emerald-400',
+    iconPath: 'M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'
+  },
+  {
+    title: 'Software Development Intern',
+    company: 'MediaTek',
+    duration: 'Nov 2025 – Apr 2026 • Bengaluru',
+    description: 'Working on software development projects at MediaTek, contributing to cutting-edge technology solutions. Developing and optimizing software systems for semiconductor and mobile technology applications with focus on Android development.',
+    skills: [
+      { name: 'Android Development', bgColor: 'bg-purple-500/20', textColor: 'text-purple-300', borderColor: 'border border-purple-500/30' },
+      { name: 'Java', bgColor: 'bg-indigo-500/20', textColor: 'text-indigo-300', borderColor: 'border border-indigo-500/30' },
+      { name: 'Software Development', bgColor: 'bg-violet-500/20', textColor: 'text-violet-300', borderColor: 'border border-violet-500/30' }
+    ],
+    // Styling classes
+    dotGradient: 'from-purple-400 to-indigo-300',
+    shadowColor: 'shadow-purple-400/30',
+    borderColor: 'border-purple-400/20',
+    hoverShadow: 'hover:shadow-purple-400/20',
+    iconGradient: 'from-purple-400 to-indigo-300',
+    titleHoverColor: 'text-purple-200',
+    companyColor: 'text-purple-300',
+    durationIconColor: 'text-indigo-400',
+    iconPath: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'
+  },
+  {
+    title: 'Freelance Web Developer',
+    company: 'Ashok Roadlines',
+    duration: 'Dec 2025 • Freelance',
+    description: 'Designed and developed a complete website for Ashok Roadlines, a transportation and logistics company. Built a modern, responsive platform using Vue.js, Tailwind CSS, and PrimeVue to showcase services and enhance their digital presence.',
+    skills: [
+      { name: 'Vue.js', bgColor: 'bg-amber-500/20', textColor: 'text-amber-300', borderColor: 'border border-amber-500/30' },
+      { name: 'Tailwind CSS', bgColor: 'bg-orange-500/20', textColor: 'text-orange-300', borderColor: 'border border-orange-500/30' },
+      { name: 'PrimeVue', bgColor: 'bg-yellow-500/20', textColor: 'text-yellow-300', borderColor: 'border border-yellow-500/30' },
+      { name: 'Web Design', bgColor: 'bg-red-500/20', textColor: 'text-red-300', borderColor: 'border border-red-500/30' }
+    ],
+    // Styling classes
+    dotGradient: 'from-amber-400 to-orange-300',
+    shadowColor: 'shadow-amber-400/30',
+    borderColor: 'border-amber-400/20',
+    hoverShadow: 'hover:shadow-amber-400/20',
+    iconGradient: 'from-amber-400 to-orange-300',
+    titleHoverColor: 'text-amber-200',
+    companyColor: 'text-amber-300',
+    durationIconColor: 'text-orange-400',
+    iconPath: 'M18 18.5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m1.5-9l1.96 2.5H17V9.5m-11 9A1.5 1.5 0 0 1 4.5 17 1.5 1.5 0 0 1 6 15.5 1.5 1.5 0 0 1 7.5 17 1.5 1.5 0 0 1 6 18.5M20 8h-3V4H3c-1.11 0-2 .89-2 2v11h2a3 3 0 0 0 3 3 3 3 0 0 0 3-3h6a3 3 0 0 0 3 3 3 3 0 0 0 3-3h2v-5l-3-4Z'
+  }
+])
 
 const techStack = ref([
   {
@@ -599,6 +676,31 @@ const throttledScrollHandler = () => {
   }
 }
 
+// Scroll Reveal Animation Setup
+const setupScrollReveal = () => {
+  const revealElements = document.querySelectorAll('.reveal-element')
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  }
+  
+  const observerCallback = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-active')
+      }
+    })
+  }
+  
+  const observer = new IntersectionObserver(observerCallback, observerOptions)
+  
+  revealElements.forEach(element => {
+    observer.observe(element)
+  })
+}
+
 // LeetCode API function
 const fetchLeetCodeStats = async () => {
   try {
@@ -631,110 +733,125 @@ const fetchLeetCodeStats = async () => {
     console.error('Error fetching LeetCode stats:', error)
     leetcodeError.value = 'Unable to load LeetCode stats'
     
-    // Fallback static data (replace with your actual stats)
+    // Fallback static data
     leetcodeStats.value = {
-      totalSolved: 65, // Replace with your actual count
-      easySolved: 43,   // Replace with your actual count
-      mediumSolved: 20, // Replace with your actual count
-      hardSolved: 2,   // Replace with your actual count
+      totalSolved: 65,
+      easySolved: 43,
+      mediumSolved: 20,
+      hardSolved: 2,
       easyTotal: 886,
       mediumTotal: 1889,
       hardTotal: 856,
       totalQuestions: 3631,
-      attempting: 14,
-      ranking: 'N/A'
+      attempting: 14
     }
   } finally {
     leetcodeLoading.value = false
   }
 }
 
-// Set up lifecycle hooks
 onMounted(() => {
-  // Add event listeners
-  window.addEventListener("resize", updateTitle, { passive: true })
-  window.addEventListener("scroll", throttledScrollHandler, { passive: true })
-  
-  // Initial calls
   updateTitle()
-  handleScroll()
-  
-  // Fetch LeetCode stats
+  window.addEventListener('resize', updateTitle)
+  window.addEventListener('scroll', throttledScrollHandler, { passive: true })
   fetchLeetCodeStats()
+  
+  // Setup scroll reveal animations
+  setupScrollReveal()
 })
 
 onBeforeUnmount(() => {
-  // Clean up event listeners
-  window.removeEventListener("resize", updateTitle)
-  window.removeEventListener("scroll", throttledScrollHandler)
+  window.removeEventListener('resize', updateTitle)
+  window.removeEventListener('scroll', throttledScrollHandler)
 })
 </script>
 
 <style scoped>
-/* Custom animations */
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Scroll Reveal Animation Styles */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation for multiple elements */
+.reveal-element:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.reveal-element:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.reveal-element:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.reveal-element:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.reveal-element:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.reveal-element:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Existing animations */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .animate-gradient {
   animation: gradient 6s ease infinite;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
 .bg-size-200 {
   background-size: 200% 200%;
 }
 
-/* Tech logo animation */
-.tech-logo {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* Custom delays for staggered animations */
-.delay-1000 { animation-delay: 1s; }
-.delay-1500 { animation-delay: 1.5s; }
-.delay-2000 { animation-delay: 2s; }
-.delay-2500 { animation-delay: 2.5s; }
-.delay-3000 { animation-delay: 3s; }
-.delay-4000 { animation-delay: 4s; }
-
-/* Responsive text sizing */
-@media (max-width: 640px) {
-  .text-responsive {
-    font-size: clamp(1rem, 4vw, 1.5rem);
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(-5deg);
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Tech logo animation */
+@keyframes techFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0ea5e9, #06b6d4);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #0284c7, #0891b2);
+.tech-logo {
+  animation: techFloat 3s ease-in-out infinite;
 }
 </style>

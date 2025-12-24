@@ -272,7 +272,19 @@ const projects = ref([
     github: 'https://github.com/AaravUppal/portfolio',
     hasCertificate: false,
     imageUrl: new URL('@/assets/website.png', import.meta.url).href,
-  }
+  },
+    {
+  id: 5,
+  title: 'Crypto Portfolio Tracker',
+  description: 'Built a responsive crypto portfolio tracker with mock trading functionality for BTC, ETH, USDT, USDC, XMR, and SOL. Features include live prices, portfolio dashboard, buy/sell trades, and authentication. Developed using Next.js, TypeScript, Tailwind CSS, and CoinGecko API.',
+  category: 'Personal Project',
+  technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'CoinGecko API', 'NextAuth.js'],
+  year: '2025',
+  icon: 'pi pi-wallet',
+  github: 'https://github.com/AaravUppal/crypto-portfolio-tracker',
+  hasCertificate: false,
+  imageUrl: new URL('@/assets/crypto-tracker.png', import.meta.url).href
+}
 ])
 
 // Computed filtered projects
