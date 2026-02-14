@@ -585,28 +585,28 @@ const experiences = ref([
     durationIconColor: 'text-indigo-400',
     iconPath: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'
   },
-  {
-    title: 'Freelance Web Developer',
-    company: 'Ashok Roadlines',
-    duration: 'Dec 2025 • Freelance',
-    description: 'Designed and developed a complete website for Ashok Roadlines, a transportation and logistics company. Built a modern, responsive platform using Vue.js, Tailwind CSS, and PrimeVue to showcase services and enhance their digital presence.',
-    skills: [
-      { name: 'Vue.js', bgColor: 'bg-amber-500/20', textColor: 'text-amber-300', borderColor: 'border border-amber-500/30' },
-      { name: 'Tailwind CSS', bgColor: 'bg-orange-500/20', textColor: 'text-orange-300', borderColor: 'border border-orange-500/30' },
-      { name: 'PrimeVue', bgColor: 'bg-yellow-500/20', textColor: 'text-yellow-300', borderColor: 'border border-yellow-500/30' },
-      { name: 'Web Design', bgColor: 'bg-red-500/20', textColor: 'text-red-300', borderColor: 'border border-red-500/30' }
-    ],
-    // Styling classes
-    dotGradient: 'from-amber-400 to-orange-300',
-    shadowColor: 'shadow-amber-400/30',
-    borderColor: 'border-amber-400/20',
-    hoverShadow: 'hover:shadow-amber-400/20',
-    iconGradient: 'from-amber-400 to-orange-300',
-    titleHoverColor: 'text-amber-200',
-    companyColor: 'text-amber-300',
-    durationIconColor: 'text-orange-400',
-    iconPath: 'M18 18.5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m1.5-9l1.96 2.5H17V9.5m-11 9A1.5 1.5 0 0 1 4.5 17 1.5 1.5 0 0 1 6 15.5 1.5 1.5 0 0 1 7.5 17 1.5 1.5 0 0 1 6 18.5M20 8h-3V4H3c-1.11 0-2 .89-2 2v11h2a3 3 0 0 0 3 3 3 3 0 0 0 3-3h6a3 3 0 0 0 3 3 3 3 0 0 0 3-3h2v-5l-3-4Z'
-  }
+ {
+  title: 'Freelance Web Developer',
+  company: 'Koriken Restaurant',
+  duration: 'Dec 2025 • Freelance',
+  description: 'Designed and developed a responsive website for Koriken, a Korean restaurant in Bengaluru. Created a modern UI using Vue.js, Tailwind CSS, and PrimeVue to showcase the menu, dining experience, location, and reservations, improving their digital presence and customer engagement.',
+  skills: [
+    { name: 'Vue.js', bgColor: 'bg-amber-500/20', textColor: 'text-amber-300', borderColor: 'border border-amber-500/30' },
+    { name: 'Tailwind CSS', bgColor: 'bg-orange-500/20', textColor: 'text-orange-300', borderColor: 'border border-orange-500/30' },
+    { name: 'PrimeVue', bgColor: 'bg-yellow-500/20', textColor: 'text-yellow-300', borderColor: 'border border-yellow-500/30' },
+    { name: 'Responsive Design', bgColor: 'bg-red-500/20', textColor: 'text-red-300', borderColor: 'border border-red-500/30' }
+  ],
+  // Styling classes
+  dotGradient: 'from-amber-400 to-orange-300',
+  shadowColor: 'shadow-amber-400/30',
+  borderColor: 'border-amber-400/20',
+  hoverShadow: 'hover:shadow-amber-400/20',
+  iconGradient: 'from-amber-400 to-orange-300',
+  titleHoverColor: 'text-amber-200',
+  companyColor: 'text-amber-300',
+  durationIconColor: 'text-orange-400',
+  iconPath: 'M12 3C8.13 3 5 6.13 5 10c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 7a2.5 2.5 0 0 1 0 5Z'
+}
 ])
 
 const techStack = ref([

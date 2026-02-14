@@ -231,6 +231,18 @@ const selectedProject = ref(null)
 // Projects data - Updated: Removed TaskFlow and Crypto Tracker, Added Ashok Roadlines
 const projects = ref([
 {
+  id: 1,
+  title: 'Koriken Website',
+  description: 'Designed and developed a modern, responsive website for Koriken, a Korean restaurant in Bengaluru. Built using Vue.js, Tailwind CSS, and PrimeVue to showcase the menu, dining experience, location details, and contact information. Focused on clean UI design, mobile responsiveness, and performance optimization to enhance customer engagement and digital visibility.',
+  category: 'Web Development',
+  technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'JavaScript'],
+  year: '2026',
+  icon: 'pi pi-map-marker',
+  link: 'https://koriken.vercel.app/',
+  hasCertificate: false,
+  imageUrl: new URL('@/assets/koriken.png', import.meta.url).href,
+},
+{
     id: 1,
     title: 'Ashok Roadlines Website',
     description: 'Designed and developed a complete website for Ashok Roadlines, a transportation and logistics company. Built a modern, responsive platform using Vue.js, Tailwind CSS, and PrimeVue to showcase services and enhance their digital presence.',
@@ -274,7 +286,7 @@ const projects = ref([
     description: 'Designed and developed a responsive portfolio website to showcase my projects, skills, and resume. Built using Vue.js, Tailwind CSS, and PrimeVue for an elegant, modern UI.',
     category: 'Personal Project',
     technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue'],
-    year: '2024',
+    year: '2025',
     icon: 'pi pi-user',
     github: 'https://github.com/AaravUppal/portfolio',
     hasCertificate: false,
