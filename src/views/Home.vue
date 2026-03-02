@@ -585,10 +585,32 @@ const experiences = ref([
     durationIconColor: 'text-indigo-400',
     iconPath: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'
   },
- {
+  {
   title: 'Freelance Web Developer',
-  company: 'Koriken Restaurant',
+  company: 'Ashoak Roadlines',
   duration: 'Dec 2025 • Freelance',
+  description: 'Designed and developed a professional website for Ashoak Roadlines, a logistics and transportation company. Built a clean, performance-focused interface using Vue.js and Tailwind CSS to showcase their fleet services, shipment tracking, service areas, and contact solutions, enhancing their online visibility and client inquiries.',
+  skills: [
+    { name: 'Vue.js', bgColor: 'bg-red-500/20', textColor: 'text-red-300', borderColor: 'border border-red-500/30' },
+    { name: 'Tailwind CSS', bgColor: 'bg-rose-500/20', textColor: 'text-rose-300', borderColor: 'border border-rose-500/30' },
+    { name: 'UI/UX Design', bgColor: 'bg-pink-500/20', textColor: 'text-pink-300', borderColor: 'border border-pink-500/30' },
+    { name: 'Performance Optimization', bgColor: 'bg-red-600/20', textColor: 'text-red-400', borderColor: 'border border-red-600/30' }
+  ],
+  // Styling classes
+  dotGradient: 'from-red-500 to-rose-400',
+  shadowColor: 'shadow-red-500/30',
+  borderColor: 'border-red-500/20',
+  hoverShadow: 'hover:shadow-red-500/20',
+  iconGradient: 'from-red-500 to-rose-400',
+  titleHoverColor: 'text-red-200',
+  companyColor: 'text-red-300',
+  durationIconColor: 'text-rose-400',
+  iconPath: 'M3 13h2l1-2h9l1 2h2M5 16a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0M3 9h18l-2-4H5L3 9Z'
+},
+ {
+  title: 'Freelance Developer',
+  company: 'Koriken Restaurant',
+  duration: 'Jan 2026 • Freelance',
   description: 'Designed and developed a responsive website for Koriken, a Korean restaurant in Bengaluru. Created a modern UI using Vue.js, Tailwind CSS, and PrimeVue to showcase the menu, dining experience, location, and reservations, improving their digital presence and customer engagement.',
   skills: [
     { name: 'Vue.js', bgColor: 'bg-amber-500/20', textColor: 'text-amber-300', borderColor: 'border border-amber-500/30' },

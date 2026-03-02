@@ -237,7 +237,7 @@ const projects = ref([
   category: 'Web Development',
   technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'JavaScript'],
   year: '2026',
-  icon: 'pi pi-map-marker',
+  icon: 'pi pi-star',
   link: 'https://koriken.vercel.app/',
   hasCertificate: false,
   imageUrl: new URL('@/assets/koriken.png', import.meta.url).href,
