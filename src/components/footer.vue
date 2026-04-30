@@ -16,6 +16,30 @@
         </a>
       </div>
 
+      <!-- Centre: quick links -->
+      <nav class="footer-nav" aria-label="Quick links">
+        <p class="footer-nav-label">Quick Links</p>
+        <ul class="footer-nav-list">
+          <li>
+            <a href="https://www.aaravuppal.com/" class="footer-nav-link">Home</a>
+          </li>
+          <li>
+            <a href="https://www.aaravuppal.com/projects" class="footer-nav-link">Projects</a>
+          </li>
+          <li>
+            <a href="https://www.aaravuppal.com/contact" class="footer-nav-link">Contact Me</a>
+          </li>
+          <li>
+            <a
+              :href="resumePdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-nav-link"
+            >Resume</a>
+          </li>
+        </ul>
+      </nav>
+
       <!-- Right: social icons with hover labels -->
       <div class="footer-right">
         <div class="social-row">
@@ -67,9 +91,15 @@
 
     </div>
 
-    <!-- Bottom copyright -->
+    <!-- Bottom bar: copyright + developed by -->
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 Aarav Uppal</span>
+      <a
+        href="https://www.aaravuppal.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-dev"
+      >Developed by Aarav Uppal</a>
     </div>
 
   </footer>
@@ -112,65 +142,120 @@ import resumePdf from '@/assets/Aarav_Uppal_Resume.pdf'
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.75rem clamp(1.5rem, 4vw, 3rem) 2rem;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem);
 }
 
 /* ── Left block ── */
 .footer-left {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.6rem;
 }
 
 .footer-name {
   font-family: var(--sans);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 800;
   color: var(--text-primary);
-  line-height: 1;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .footer-role {
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
 }
 
 .footer-availability {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .footer-email {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   border-bottom: 1px solid transparent;
   transition: color 220ms ease, border-color 220ms ease;
   width: fit-content;
-  margin-top: 0.1rem;
+  margin-top: 0.25rem;
 }
 .footer-email:hover {
   color: rgba(125, 211, 252, 0.95);
   border-color: rgba(125, 211, 252, 0.35);
 }
 
+/* ── Quick links nav ── */
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-nav-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.1rem;
+}
+
+.footer-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-nav-link {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.footer-nav-link::before {
+  content: '›';
+  font-size: 1rem;
+  color: var(--text-dim);
+  transition: color 200ms ease, transform 200ms ease;
+}
+.footer-nav-link:hover {
+  color: rgb(125, 211, 252);
+  border-color: rgba(125, 211, 252, 0.3);
+}
+.footer-nav-link:hover::before {
+  color: rgb(125, 211, 252);
+  transform: translateX(3px);
+}
+
 /* ── Social row ── */
 .social-row {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding-bottom: 28px;
+  gap: 0.75rem;
+  padding-bottom: 32px;
 }
 
 .social-btn {
@@ -178,9 +263,9 @@ import resumePdf from '@/assets/Aarav_Uppal_Resume.pdf'
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   color: var(--text-muted);
   text-decoration: none;
@@ -204,7 +289,7 @@ import resumePdf from '@/assets/Aarav_Uppal_Resume.pdf'
 .social-btn:hover::before { opacity: 1; }
 
 .social-btn i {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   position: relative;
   z-index: 1;
 }
@@ -236,24 +321,45 @@ import resumePdf from '@/assets/Aarav_Uppal_Resume.pdf'
 .footer-bottom {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.9rem clamp(1.5rem, 4vw, 3rem) 1.1rem;
+  padding: 1.1rem clamp(1.5rem, 4vw, 3rem) 1.4rem;
   border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .footer-copy {
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   color: var(--text-dim);
 }
 
+.footer-dev {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.footer-dev:hover {
+  color: rgb(125, 211, 252);
+  border-color: rgba(125, 211, 252, 0.3);
+}
+
 /* ── Mobile ── */
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .footer-inner {
     flex-direction: column;
     gap: 1.75rem;
     padding-bottom: 1.5rem;
   }
+  .footer-nav { order: 2; }
+  .footer-right { order: 3; }
   .social-row { gap: 0.5rem; }
 }
 

@@ -52,13 +52,23 @@
 
           <!-- Thumbnail -->
           <div class="project-thumb">
+            <!-- Shimmer skeleton — visible while image is still loading -->
+            <div
+              v-if="project.imageUrl && !loadedImages.has(project.id)"
+              class="thumb-skeleton"
+              aria-hidden="true"
+            ></div>
+
             <img
               v-if="project.imageUrl"
               :src="project.imageUrl"
               :alt="project.title"
+              loading="lazy"
               class="project-thumb-img"
+              :class="{ 'thumb-img--loading': !loadedImages.has(project.id) }"
+              @load="loadedImages.add(project.id)"
             />
-            <div v-else class="project-thumb-icon">
+            <div v-if="!project.imageUrl" class="project-thumb-icon">
               <i :class="project.icon"></i>
             </div>
             <!-- Gradient fade at bottom of image into card body -->
@@ -190,7 +200,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, computed, reactive, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // NavBar and Footer are assumed globally registered (as in original).
@@ -213,6 +223,9 @@ const selectedCategory = ref('All')
 const categories = ['All', 'Web Development', 'University Project', 'Personal Project']
 const showModal        = ref(false)
 const selectedProject  = ref(null)
+
+// Tracks which project IDs have finished loading their thumbnail image
+const loadedImages = reactive(new Set())
 
 const projects = ref([
   {
@@ -646,7 +659,30 @@ onMounted(() => {
   object-fit: cover;
   display: block;
   filter: grayscale(25%) contrast(1.05);
-  transition: filter 400ms ease, transform 400ms ease;
+  transition: filter 400ms ease, transform 400ms ease, opacity 350ms ease;
+}
+/* Hidden while the image is still loading — fades in once @load fires */
+.thumb-img--loading {
+  opacity: 0;
+}
+
+/* ── Skeleton shimmer ── */
+.thumb-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(125, 211, 252, 0.09) 40%,
+    rgba(255, 255, 255, 0.03) 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 .project-card:hover .project-thumb-img {
   filter: grayscale(0%) contrast(1.1);
@@ -1094,6 +1130,11 @@ onMounted(() => {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+  /* Under reduced motion, skeleton is a static muted surface (no shimmer) */
+  .thumb-skeleton {
+    background: rgba(125, 211, 252, 0.05) !important;
+    animation: none !important;
   }
 }
 </style>
