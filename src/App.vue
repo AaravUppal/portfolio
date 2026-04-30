@@ -1,6 +1,6 @@
 <!-- App.vue -->
 <template>
-  <div class="min-h-screen flex flex-col bg-gray-950 text-white">
+  <div class="min-h-screen flex flex-col bg-black text-white">
     <NavBar/>
     <router-view />
     <Footer />

@@ -1,279 +1,527 @@
 <template>
-  <nav class="sticky top-0 z-[100] backdrop-blur-md bg-black/90 border-b border-blue-500/30 shadow-lg shadow-blue-500/10 relative">
-    <!-- Scroll Progress Bar -->
-    <div class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 w-full">
-      <div 
-        class="h-full bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 transition-all duration-150 ease-out shadow-lg shadow-blue-400/30 relative overflow-hidden"
-        :style="{ width: scrollProgress + '%' }"
-      >
-        <!-- Animated shimmer effect -->
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] animate-shimmer"></div>
-        
-        <!-- Pulsing glow at the end -->
-        <div 
-          class="absolute right-0 top-0 w-2 h-full bg-gradient-to-l from-cyan-300 via-blue-300 to-transparent opacity-80"
-          :class="{ 'animate-pulse': scrollProgress > 0 }"
-        ></div>
-      </div>
+  <nav
+    class="navbar"
+    :class="{ scrolled: isScrolled, 'menu-open': isMenuOpen }"
+  >
+    <div class="nav-scan" aria-hidden="true"></div>
+
+    <!-- BRAND -->
+    <RouterLink to="/" class="brand" @click="closeMenu" aria-label="Home">
+      <span class="brand-bracket">[</span>
+      <span class="brand-name">AU</span>
+      <span class="brand-bracket">]</span>
+      <span class="brand-full">Aarav Uppal</span>
+    </RouterLink>
+
+    <!-- DESKTOP NAV LINKS -->
+    <div class="nav-links">
+      <RouterLink to="/" class="nav-link" @click="closeMenu">
+        <span class="link-label">Home</span>
+        <span class="link-bar"></span>
+      </RouterLink>
+      <RouterLink to="/projects" class="nav-link" @click="closeMenu">
+        <span class="link-label">Projects</span>
+        <span class="link-bar"></span>
+      </RouterLink>
+      <RouterLink to="/contact" class="nav-link" @click="closeMenu">
+        <span class="link-label">Contact Me</span>
+        <span class="link-bar"></span>
+      </RouterLink>
     </div>
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4">
-      <div class="flex justify-between items-center h-16 sm:h-20">
-       <!-- Name / Logo -->
-<router-link
-  to="/"
-  class="group relative flex items-center space-x-2 text-blue-100 hover:text-blue-300 transition-all duration-500 ease-out transform hover:scale-105"
-  exact
->
-  <!-- Animated background glow -->
-  <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-purple-500/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
-  
-  <!-- Subtle border effect -->
-  <div class="absolute -inset-1 bg-gradient-to-r from-blue-400/10 via-cyan-300/10 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-  
-  <!-- Main content container -->
-  <div class="relative z-10 flex items-center space-x-2">
-    <!-- Decorative dot -->
-    <div class="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 opacity-70 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-pulse"></div>
-    
-    <!-- Name with enhanced styling -->
-    <div class="relative overflow-hidden">
-      <div class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-white bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-300 group-hover:via-cyan-200 group-hover:to-blue-100">
-        Aarav Uppal
-      </div>
-      
-      <!-- Subtle underline effect -->
-      <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-500 ease-out"></div>
-    </div>
-    
-    <!-- Decorative arrow -->
-    <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-      <svg class="w-4 h-4 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-      </svg>
-    </div>
-  </div>
-  
-  <!-- Floating particles effect -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-1 left-4 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-700 delay-100"></div>
-    <div class="absolute top-3 right-6 w-0.5 h-0.5 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-700 delay-300"></div>
-  </div>
-</router-link>
-        
-        <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex items-center space-x-8">
-          <!-- Show About Me link only when NOT on about page -->
-          <router-link
-            v-if="currentRoute !== '/about'"
-            to="/about"
-            class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
-          >
-            <span class="relative z-10">About Me</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></div>
-          </router-link>
-          
-          <!-- Show Projects link only when NOT on projects page -->
-          <router-link
-            v-if="currentRoute !== '/projects'"
-            to="/projects"
-            class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
-          >
-            <span class="relative z-10">Projects</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></div>
-          </router-link>
-          
-          <!-- Show Contact link only when NOT on contact page -->
-          <router-link
-            v-if="currentRoute !== '/contact'"
-            to="/contact"
-            class="relative px-6 py-2 text-blue-100 hover:text-white transition-all duration-300 group overflow-hidden rounded-lg border border-blue-500/50 hover:border-blue-300/70"
-          >
-            <span class="relative z-10">Get In Touch</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-cyan-400/30 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-          </router-link>
-          
-          <!-- Show Home link when on contact, projects, or about page -->
-          <router-link
-            v-if="currentRoute === '/contact' || currentRoute === '/projects' || currentRoute === '/about'"
-            to="/"
-            class="relative px-4 py-2 text-blue-100 hover:text-blue-300 transition-all duration-300 group"
-          >
-            <span class="relative z-10">Home</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-300 group-hover:w-full transition-all duration-300"></div>
-          </router-link>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button
-          @click="toggleMobileMenu"
-          class="md:hidden p-2 rounded-lg text-blue-100 hover:text-blue-300 hover:bg-blue-900/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
-          aria-label="Toggle navigation menu"
-        >
-          <svg
-            class="w-6 h-6 transition-transform duration-300"
-            :class="{ 'rotate-180': isMobileMenuOpen }"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              v-if="!isMobileMenuOpen"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path
-              v-else
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation Menu -->
-    <div
-      class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
-      :class="isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'"
+    <!-- HAMBURGER -->
+    <button
+      class="hamburger"
+      @click="isMenuOpen = !isMenuOpen"
+      :aria-label="isMenuOpen ? 'Close menu' : 'Open menu'"
+      :aria-expanded="isMenuOpen"
     >
-      <div class="px-4 py-4 space-y-3 bg-black/95 backdrop-blur-sm border-t border-blue-500/30">
-        <!-- Show About Me link only when NOT on about page -->
-        <router-link
-          v-if="currentRoute !== '/about'"
-          to="/about"
-          @click="closeMobileMenu"
-          class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
-        >
-          <span class="flex items-center space-x-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-            <span>About Me</span>
-          </span>
-        </router-link>
-        
-        <!-- Show Projects link only when NOT on projects page -->
-        <router-link
-          v-if="currentRoute !== '/projects'"
-          to="/projects"
-          @click="closeMobileMenu"
-          class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
-        >
-          <span class="flex items-center space-x-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 7a2 2 0 012-2h10a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            <span>Projects</span>
-          </span>
-        </router-link>
-        
-        <!-- Show Contact link only when NOT on contact page -->
-        <router-link
-          v-if="currentRoute !== '/contact'"
-          to="/contact"
-          @click="closeMobileMenu"
-          class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
-        >
-          <span class="flex items-center space-x-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <span>Get In Touch</span>
-          </span>
-        </router-link>
-        
-        <!-- Show Home link when on contact, projects, or about page -->
-        <router-link
-          v-if="currentRoute === '/contact' || currentRoute === '/projects' || currentRoute === '/about'"
-          to="/"
-          @click="closeMobileMenu"
-          class="block px-4 py-3 text-blue-100 hover:text-blue-300 hover:bg-blue-900/30 rounded-lg transition-all duration-300 transform hover:translate-x-1"
-        >
-          <span class="flex items-center space-x-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            <span>Home</span>
-          </span>
-        </router-link>
+      <span class="ham-label">{{ isMenuOpen ? 'CLOSE' : 'MENU' }}</span>
+      <div class="ham-icon">
+        <span class="bar" :class="{ open: isMenuOpen }"></span>
+        <span class="bar" :class="{ open: isMenuOpen }"></span>
       </div>
-    </div>
+    </button>
+
+    <!-- MOBILE OVERLAY -->
+    <Transition name="overlay">
+      <div v-if="isMenuOpen" class="mobile-overlay" @click.self="closeMenu">
+        <div class="mobile-menu">
+          <div class="mobile-corner tl"></div>
+          <div class="mobile-corner br"></div>
+
+          <p class="mobile-tag">navigate</p>
+
+          <nav class="mobile-nav" role="navigation">
+            <RouterLink
+              v-for="(link, i) in mobileLinks"
+              :key="link.to"
+              :to="link.to"
+              class="mobile-link"
+              :style="{ '--delay': `${i * 60 + 80}ms` }"
+              @click="closeMenu"
+            >
+              <span class="mob-index">0{{ i + 1 }}</span>
+              <span class="mob-label">{{ link.label }}</span>
+              <span class="mob-arrow">→</span>
+            </RouterLink>
+          </nav>
+
+          <div class="mobile-footer">
+            <span class="footer-mono">aaravuppal.com</span>
+            <span class="footer-status">
+              <span class="status-dot"></span>
+              Available
+            </span>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </nav>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 
-const route = useRoute()
-const isMobileMenuOpen = ref(false)
-const scrollProgress = ref(0)
+const isScrolled  = ref(false)
+const isMenuOpen  = ref(false)
+const router      = useRouter()
 
-// Get current route path
-const currentRoute = computed(() => route.path)
-
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
+function handleScroll() {
+  isScrolled.value = window.scrollY > 40
 }
 
-const closeMobileMenu = () => {
-  isMobileMenuOpen.value = false
+function closeMenu() {
+  isMenuOpen.value = false
 }
 
-// Scroll progress calculation
-const updateScrollProgress = () => {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-  
-  if (scrollHeight > 0) {
-    scrollProgress.value = Math.min((scrollTop / scrollHeight) * 100, 100)
-  } else {
-    scrollProgress.value = 0
-  }
-}
+watch(isMenuOpen, val => {
+  document.body.style.overflow = val ? 'hidden' : ''
+})
 
-// Throttle scroll events for better performance
-let ticking = false
-const handleScroll = () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      updateScrollProgress()
-      ticking = false
-    })
-    ticking = true
-  }
-}
+router.afterEach(closeMenu)
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
-  updateScrollProgress() // Initial calculation
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
+
+const mobileLinks = [
+  { to: '/',         label: 'Home'       },
+  { to: '/projects', label: 'Projects'   },
+  { to: '/contact',  label: 'Contact Me' },
+]
 </script>
 
 <style scoped>
-/* Custom shimmer animation */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(200%);
-  }
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+/* ── VARIABLES ───────────────────────────────────────────── */
+.navbar {
+  --cyan:         rgba(125, 211, 252, 0.95);
+  --cyan-hex:     #7DD3FC;
+  --cyan-dim:     rgba(125, 211, 252, 0.08);
+  --cyan-mid:     rgba(125, 211, 252, 0.18);
+  --border-cyan:  rgba(125, 211, 252, 0.28);
+  --bg:           #030608;
+  --surface:      #080c10;
+  --white:        #ffffff;
+  --border:       rgba(255, 255, 255, 0.1);
+  --border-mid:   rgba(255, 255, 255, 0.22);
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-muted:   rgba(255, 255, 255, 0.5);
+  --text-dim:     rgba(255, 255, 255, 0.28);
+  --mono:         'Space Mono', monospace;
+  --sans:         'Syne', sans-serif;
 }
 
-.animate-shimmer {
-  animation: shimmer 2s infinite;
+/* ── BASE ────────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(2rem, 6vw, 5rem);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease;
+}
+
+.navbar.scrolled {
+  background: rgba(3, 6, 8, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.nav-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.012) 3px,
+    rgba(255, 255, 255, 0.012) 4px
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.navbar.scrolled .nav-scan { opacity: 1; }
+
+/* ── BRAND ───────────────────────────────────────────────── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-bracket {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  color: var(--text-dim);
+  line-height: 1;
+  transition: color 200ms ease;
+}
+
+.brand-name {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  transition: color 200ms ease;
+}
+
+.brand-full {
+  display: none;
+}
+
+.brand:hover .brand-bracket,
+.brand:hover .brand-name {
+  color: var(--cyan);
+}
+
+/* ── DESKTOP NAV LINKS ───────────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* hover background */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.nav-link:hover::before { opacity: 1; }
+
+.link-label {
+  position: relative;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  transition: color 200ms ease;
+  z-index: 1;
+}
+
+.nav-link:hover .link-label { color: var(--white); }
+
+/* active state — sky blue */
+.nav-link.router-link-active .link-label {
+  color: var(--cyan);
+}
+
+/* underline bar */
+.link-bar {
+  position: absolute;
+  bottom: 5px;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+  background: rgba(125, 211, 252, 0.6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover .link-bar,
+.nav-link.router-link-active .link-bar {
+  transform: scaleX(1);
+}
+
+/* ── HAMBURGER ───────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+.hamburger:hover {
+  border-color: var(--border-cyan);
+  background: var(--cyan-dim);
+}
+
+.ham-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  transition: color 200ms ease;
+}
+.hamburger:hover .ham-label { color: var(--cyan); }
+
+.ham-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 16px;
+}
+
+.bar {
+  display: block;
+  height: 1px;
+  background: var(--text-muted);
+  border-radius: 1px;
+  transform-origin: center;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 250ms ease,
+              background 200ms ease;
+}
+.hamburger:hover .bar { background: var(--cyan); }
+
+.bar.open:first-child {
+  transform: translateY(2.5px) rotate(45deg);
+}
+.bar.open:last-child {
+  transform: translateY(-2.5px) rotate(-45deg);
+}
+
+/* ── MOBILE OVERLAY ──────────────────────────────────────── */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(3, 6, 8, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.mobile-menu {
+  position: relative;
+  width: min(340px, 90vw);
+  margin-top: 80px;
+  margin-right: clamp(1rem, 4vw, 2rem);
+  background: #0a0f14;
+  border: 1px solid rgba(125, 211, 252, 0.15);
+  border-radius: 8px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.04),
+    0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+/* corner accents */
+.mobile-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(125, 211, 252, 0.45);
+  border-style: solid;
+}
+.mobile-corner.tl {
+  top: -1px; left: -1px;
+  border-width: 1px 0 0 1px;
+  border-radius: 8px 0 0 0;
+}
+.mobile-corner.br {
+  bottom: -1px; right: -1px;
+  border-width: 0 1px 1px 0;
+  border-radius: 0 0 8px 0;
+}
+
+.mobile-tag {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.45);
+  margin-bottom: 1rem;
+}
+
+/* ── MOBILE NAV LINKS ────────────────────────────────────── */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0.75rem;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+  animation: linkFadeIn 300ms var(--delay, 0ms) both ease;
+}
+.mobile-link:hover {
+  background: rgba(125, 211, 252, 0.06);
+  border-color: rgba(125, 211, 252, 0.15);
+}
+.mobile-link.router-link-active {
+  background: rgba(125, 211, 252, 0.06);
+  border-color: rgba(125, 211, 252, 0.2);
+}
+
+@keyframes linkFadeIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.mob-index {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: rgba(125, 211, 252, 0.4);
+  letter-spacing: 0.08em;
+  min-width: 20px;
+}
+
+.mob-label {
+  font-family: var(--sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  flex: 1;
+  transition: color 200ms ease;
+}
+.mobile-link:hover .mob-label,
+.mobile-link.router-link-active .mob-label {
+  color: rgba(125, 211, 252, 0.95);
+}
+
+.mob-arrow {
+  font-size: 0.85rem;
+  color: rgba(125, 211, 252, 0.3);
+  transition: transform 200ms ease, color 200ms ease;
+}
+.mobile-link:hover .mob-arrow,
+.mobile-link.router-link-active .mob-arrow {
+  color: rgba(125, 211, 252, 0.7);
+  transform: translateX(3px);
+}
+
+/* ── MOBILE FOOTER ───────────────────────────────────────── */
+.mobile-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-mono {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: rgba(125, 211, 252, 0.6);
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(125, 211, 252, 0.8);
+  box-shadow: 0 0 6px rgba(125, 211, 252, 0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── TRANSITIONS ─────────────────────────────────────────── */
+.overlay-enter-active,
+.overlay-leave-active {
+  transition: opacity 220ms ease;
+}
+.overlay-enter-active .mobile-menu,
+.overlay-leave-active .mobile-menu {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease;
+}
+.overlay-enter-from,
+.overlay-leave-to {
+  opacity: 0;
+}
+.overlay-enter-from .mobile-menu {
+  transform: translateY(-12px) scale(0.97);
+  opacity: 0;
+}
+.overlay-leave-to .mobile-menu {
+  transform: translateY(-8px) scale(0.98);
+  opacity: 0;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .nav-links  { display: none; }
+  .hamburger  { display: flex; }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 </style>
