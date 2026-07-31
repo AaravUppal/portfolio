@@ -20,7 +20,7 @@
 
       <!-- Section Heading -->
       <div class="section-heading" ref="headingRef">
-        <h1 class="section-title">my projects</h1>
+        <h1 class="section-title">My Projects</h1>
         <div class="heading-rule" aria-hidden="true"></div>
       </div>
 
@@ -97,6 +97,7 @@
               <button
                 v-if="project.hasCertificate"
                 class="action-btn action-btn--outline"
+                :class="{ 'action-btn--solo': !project.link }"
                 @click="showCertificate(project)"
               >
                 <i class="pi pi-certificate"></i>
@@ -112,17 +113,6 @@
               >
                 <i class="pi pi-external-link"></i>
                 <span>View Project</span>
-              </button>
-
-              <!-- GitHub (primary, only when no direct link) -->
-              <button
-                v-else-if="project.github"
-                class="action-btn action-btn--primary"
-                :class="{ 'action-btn--solo': !project.hasCertificate }"
-                @click="openGitHub(project)"
-              >
-                <i class="pi pi-github"></i>
-                <span>GitHub</span>
               </button>
             </div>
 
@@ -220,7 +210,7 @@ const cardRefs    = ref([])   // populated by v-for :ref callback
 
 // ── Data ─────────────────────────────────────────────────────
 const selectedCategory = ref('All')
-const categories = ['All', 'Web Development', 'University Project', 'Personal Project']
+const categories = ['All', 'Freelance Project', 'Internship']
 const showModal        = ref(false)
 const selectedProject  = ref(null)
 
@@ -228,11 +218,12 @@ const selectedProject  = ref(null)
 const loadedImages = reactive(new Set())
 
 const projects = ref([
+  // ── Freelance Projects ──────────────────────────────────────
   {
     id: 1,
     title: 'Koriken Website',
     description: 'Designed and developed a modern, responsive website for Koriken, a Korean restaurant in Bengaluru. Built using Vue.js, Tailwind CSS, and PrimeVue to showcase the menu, dining experience, location details, and contact information. Focused on clean UI design, mobile responsiveness, and performance optimization to enhance customer engagement and digital visibility.',
-    category: 'Web Development',
+    category: 'Freelance Project',
     technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'JavaScript'],
     year: '2026',
     icon: 'pi pi-star',
@@ -244,7 +235,7 @@ const projects = ref([
     id: 2,
     title: 'Ashok Roadlines Website',
     description: 'Designed and developed a complete website for Ashok Roadlines, a transportation and logistics company. Built a modern, responsive platform using Vue.js, Tailwind CSS, and PrimeVue to showcase services and enhance their digital presence.',
-    category: 'Web Development',
+    category: 'Freelance Project',
     technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'JavaScript'],
     year: '2025',
     icon: 'pi pi-truck',
@@ -252,15 +243,16 @@ const projects = ref([
     hasCertificate: false,
     imageUrl: new URL('@/assets/ar.png', import.meta.url).href,
   },
+
+  // ── Internships ─────────────────────────────────────────────
   {
     id: 3,
     title: 'Pom Power Web App',
     description: 'Developed a responsive web application for the Pom Power productivity platform during my internship at Pom Power, Bengaluru. Built with Vue.js and Tailwind CSS.',
-    category: 'Web Development',
+    category: 'Internship',
     technologies: ['Vue.js', 'Tailwind CSS', 'JavaScript', 'Git', 'GitHub'],
     year: '2024',
     icon: 'pi pi-clock',
-    github: 'https://github.com/DerKaiser28/PomPowerWebsite',
     hasCertificate: true,
     certificateUrl: new URL('@/assets/pompower.jpg', import.meta.url).href,
     imageUrl: new URL('@/assets/pom.png', import.meta.url).href,
@@ -269,26 +261,26 @@ const projects = ref([
     id: 4,
     title: 'Mentor-Mentee App',
     description: 'University-wide mentor-mentee management application for CHRIST University. Built dynamic, responsive UI components and collaborated with team members.',
-    category: 'University Project',
+    category: 'Internship',
     technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue', 'Git', 'GitHub'],
     year: '2024',
     icon: 'pi pi-users',
-    github: 'https://github.com/DerKaiser28/MentorMenteeApp',
     hasCertificate: true,
     certificateUrl: new URL('@/assets/mentormentee.png', import.meta.url).href,
     imageUrl: new URL('@/assets/christ.avif', import.meta.url).href,
   },
   {
     id: 5,
-    title: 'Personal Portfolio Website',
-    description: 'Designed and developed a responsive portfolio website to showcase my projects, skills, and resume. Built using Vue.js, Tailwind CSS, and PrimeVue for an elegant, modern UI.',
-    category: 'Personal Project',
-    technologies: ['Vue.js', 'Tailwind CSS', 'PrimeVue'],
+    title: 'MediaTek Internship',
+    description: 'Software Development Intern at MediaTek. Worked on workflow automation with n8n, native Android development in Java, and integrating AI tools such as Google ML Kit into mobile applications.',
+    category: 'Internship',
+    technologies: ['Java', 'Android', 'n8n', 'Google ML Kit'],
     year: '2025',
-    icon: 'pi pi-user',
-    github: 'https://github.com/AaravUppal/portfolio',
-    hasCertificate: false,
-    imageUrl: new URL('@/assets/website.png', import.meta.url).href,
+    icon: 'pi pi-android',
+    hasCertificate: true,
+    // TODO: point this at the actual certificate asset once added to /assets
+    certificateUrl: new URL('@/assets/mt.jpeg', import.meta.url).href,
+    imageUrl: new URL('@/assets/mt.jpeg', import.meta.url).href,
   },
 ])
 
@@ -319,7 +311,6 @@ function closeModal() {
   selectedProject.value = null
   document.body.style.overflow = 'auto'
 }
-function openGitHub(project) { if (project.github) window.open(project.github, '_blank') }
 function openLink(project)   { if (project.link)   window.open(project.link,   '_blank') }
 
 // ── Card tilt / cursor glow (white-only glow) ────────────────
@@ -813,7 +804,7 @@ onMounted(() => {
 .action-btn:hover  { transform: translateY(-1px); }
 .action-btn:active { transform: translateY(0); }
 
-/* Primary — gradient sky-blue (View Project / GitHub) — matches contact submit btn */
+/* Primary — gradient sky-blue (View Project) — matches contact submit btn */
 .action-btn--primary {
   background: linear-gradient(135deg, rgba(125, 211, 252, 0.18), rgba(103, 232, 249, 0.10));
   color: rgba(125, 211, 252, 0.95);

@@ -8,6 +8,13 @@
          HERO
     ══════════════════════════════════════ -->
     <section class="hero-section" ref="heroRef">
+
+      <!-- Ambient aurora glow (adds depth behind the grid) -->
+      <div class="hero-aura" aria-hidden="true">
+        <span class="aura-orb aura-orb--1"></span>
+        <span class="aura-orb aura-orb--2"></span>
+      </div>
+
       <div class="grid-bg" aria-hidden="true" ref="gridBgRef"></div>
       <div class="scan-line" aria-hidden="true"></div>
 
@@ -74,7 +81,7 @@
               @mousemove="magnetMove"
               @mouseleave="magnetLeave"
             >
-              <i class="pi pi-file-pdf"></i>
+              <i class="pi pi-file"></i>
               <span class="social-label" aria-hidden="true">Resume</span>
             </a>
           </div>
@@ -84,14 +91,14 @@
         <div class="hero-content" ref="contentRef">
 
           <p class="hero-bio" ref="heroBioRef">
-            Hi, I'm <strong>Aarav Uppal</strong>, a <strong>software developer</strong> based in
+            Hi, I'm <span class="name-highlight">Aarav Uppal</span> a software developer based in
             <strong>Bangalore, India</strong>. I help businesses
-            <strong>grow their online presence</strong> through
-            <strong>modern websites</strong> and build
-            <strong>custom software solutions</strong> that improve
-            <strong>internal operations and efficiency</strong>. I currently do this through
-            <strong>freelance projects</strong>, with the goal of building my own
-            <strong>software business</strong>.
+            grow their online presence through
+            modern websites and build
+            custom software solutions that improve
+            internal operations and efficiency. I currently do this through
+            freelance projects, with the goal of building my own
+            software business.
           </p>
 
           <div class="hero-ctas" ref="heroCtasRef">
@@ -107,6 +114,12 @@
 
         </div>
       </div>
+
+      <!-- Scroll affordance -->
+      <div class="scroll-cue" ref="scrollCueRef" aria-hidden="true">
+        <span class="scroll-cue-text">scroll</span>
+        <span class="scroll-cue-line"></span>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════════
@@ -117,6 +130,7 @@
 
         <div class="section-heading" ref="expHeadingRef">
           <h2 class="section-title">work experience</h2>
+          <span class="title-underline" aria-hidden="true"></span>
         </div>
 
         <div class="timeline-list" ref="timelineListRef">
@@ -202,6 +216,7 @@
 
         <div class="section-heading" ref="eduHeadingRef">
           <h2 class="section-title">Academic Background</h2>
+          <span class="title-underline" aria-hidden="true"></span>
         </div>
 
         <div class="edu-stack">
@@ -249,7 +264,7 @@ import arLogo from '@/assets/ashoak.jpeg';
 import koriken from '@/assets/korikenlogo.png';
 import christ from '@/assets/christlogo.jpg';
 import pom from '@/assets/pomlogo.jpeg';
-import resumePdf from '@/assets/Aarav_Uppal_Resume .pdf';
+import resumePdf from '@/assets/AaravUppal_Resume.pdf';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -267,6 +282,7 @@ const socialLinksRef   = ref(null)
 const contentRef       = ref(null)
 const heroBioRef       = ref(null)
 const heroCtasRef      = ref(null)
+const scrollCueRef     = ref(null)
 const expHeadingRef    = ref(null)
 const timelineListRef  = ref(null)
 const spineRef         = ref(null)
@@ -328,41 +344,50 @@ function tiltLeave(e) {
 let ctx
 
 onMounted(() => {
+  const prefersReduced =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   nextTick(() => {
     ctx = gsap.context(() => {
 
+      // Respect reduced-motion: leave everything in its final, visible state.
+      if (prefersReduced) return
+
       // ── 1. HERO ENTRANCE ─────────────────────────────────────
-      const heroTL = gsap.timeline({ delay: 0.1 })
+      const heroTL = gsap.timeline({ delay: 0.1, defaults: { ease: 'power3.out' } })
 
       heroTL.fromTo(
         [cornerTL.value, cornerTR.value, cornerBL.value, cornerBR.value],
         { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.07 }
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.06 }
       )
       heroTL.fromTo(
         heroImgEl.value,
-        { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0 },
-        { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, duration: 1, ease: 'power4.out' },
+        { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0, scale: 1.08 },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, scale: 1,
+          duration: 1.1, ease: 'expo.out', clearProps: 'transform',
+        },
         '-=0.2'
       )
       heroTL.fromTo(
         heroBioRef.value,
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-        '-=0.5'
+        { y: 24, opacity: 0, filter: 'blur(8px)' },
+        { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.9 },
+        '-=0.55'
       )
       if (heroCtasRef.value) {
         heroTL.fromTo(
           heroCtasRef.value.querySelectorAll('.btn'),
-          { y: 18, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out', stagger: 0.12 },
-          '-=0.4'
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.12 },
+          '-=0.45'
         )
       }
       heroTL.fromTo(
         Array.from(socialLinksRef.value?.querySelectorAll('.social-btn') ?? []),
         { y: 15, opacity: 0, scale: 0.85 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.1 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.09 },
         '-=0.35'
       )
 
@@ -380,6 +405,16 @@ onMounted(() => {
         },
       })
 
+      // Fade the scroll cue out as the hero leaves.
+      if (scrollCueRef.value) {
+        gsap.to(scrollCueRef.value, {
+          opacity: 0, y: 12, ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.value, start: 'top top', end: '25% top', scrub: true,
+          },
+        })
+      }
+
       ScrollTrigger.create({
         trigger: heroRef.value,
         start: 'bottom 65%',
@@ -391,15 +426,28 @@ onMounted(() => {
       ;[expHeadingRef.value, eduHeadingRef.value].forEach((el) => {
         if (!el) return
         gsap.fromTo(el,
-          { y: 28, opacity: 0 },
+          { y: 28, opacity: 0, filter: 'blur(6px)' },
           {
-            y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+            y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out',
             scrollTrigger: {
               trigger: el, start: 'top 88%', end: 'bottom 20%',
               toggleActions: 'play reverse play reverse',
             },
           }
         )
+        const underline = el.querySelector('.title-underline')
+        if (underline) {
+          gsap.fromTo(underline,
+            { scaleX: 0 },
+            {
+              scaleX: 1, duration: 0.7, ease: 'power3.inOut', delay: 0.15,
+              scrollTrigger: {
+                trigger: el, start: 'top 88%', end: 'bottom 20%',
+                toggleActions: 'play reverse play reverse',
+              },
+            }
+          )
+        }
       })
 
       // ── 4. SPINE PROGRESS ─────────────────────────────────────
@@ -421,9 +469,9 @@ onMounted(() => {
         const card   = el.querySelector('.exp-card')
         if (card) {
           gsap.fromTo(card,
-            { x: isLeft ? -30 : 30, y: 16, opacity: 0 },
+            { x: isLeft ? -34 : 34, y: 18, opacity: 0, scale: 0.98 },
             {
-              x: 0, y: 0, opacity: 1, duration: 0.65, ease: 'power3.out',
+              x: 0, y: 0, opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out',
               scrollTrigger: {
                 trigger: el, start: 'top 88%', end: 'bottom 15%',
                 toggleActions: 'play reverse play reverse',
@@ -450,9 +498,9 @@ onMounted(() => {
       eduItemRefs.value.forEach((el, i) => {
         if (!el) return
         gsap.fromTo(el,
-          { y: 32, opacity: 0 },
+          { y: 34, opacity: 0, scale: 0.98 },
           {
-            y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+            y: 0, opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out',
             delay: i * 0.1,
             scrollTrigger: {
               trigger: el, start: 'top 88%', end: 'bottom 15%',
@@ -564,6 +612,7 @@ const educationItems = [
   --accent-dim:    rgba(125, 211, 252, 0.08);
   --accent-border: rgba(125, 211, 252, 0.22);
   --accent-glow:   rgba(125, 211, 252, 0.14);
+  --ease-soft:     cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -594,6 +643,43 @@ const educationItems = [
   align-items: center;
   padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 6vw, 6rem) clamp(2rem, 6vw, 5rem);
   overflow: hidden;
+}
+
+/* ── Ambient aurora orbs — soft depth behind everything ── */
+.hero-aura {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.aura-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(55px);
+  will-change: transform;
+}
+.aura-orb--1 {
+  width: 42vw; height: 42vw;
+  max-width: 640px; max-height: 640px;
+  top: -14%; left: -8%;
+  background: radial-gradient(circle, rgba(125, 211, 252, 0.13), transparent 70%);
+  animation: auraDrift1 24s ease-in-out infinite;
+}
+.aura-orb--2 {
+  width: 36vw; height: 36vw;
+  max-width: 560px; max-height: 560px;
+  bottom: -16%; right: -6%;
+  background: radial-gradient(circle, rgba(103, 232, 249, 0.10), transparent 70%);
+  animation: auraDrift2 28s ease-in-out infinite;
+}
+@keyframes auraDrift1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(42px, 30px, 0) scale(1.08); }
+}
+@keyframes auraDrift2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-38px, -26px, 0) scale(1.1); }
 }
 
 /* ── Grid bg — sky-blue 48px, matches contact & projects ── */
@@ -647,7 +733,15 @@ const educationItems = [
   gap: 2rem;
 }
 
-.img-frame { position: relative; width: 100%; }
+.img-frame {
+  position: relative;
+  width: 100%;
+  animation: imgFloat 6.5s ease-in-out infinite;
+}
+@keyframes imgFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
 
 .img-corner {
   position: absolute;
@@ -669,9 +763,23 @@ const educationItems = [
   aspect-ratio: 4 / 5;
   display: block;
   filter: grayscale(20%) contrast(1.05);
-  transition: filter 500ms ease;
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.08),
+    0 22px 55px -24px rgba(125, 211, 252, 0.28),
+    0 12px 40px -20px rgba(0, 0, 0, 0.65);
+  transition:
+    filter 500ms ease,
+    box-shadow 500ms ease,
+    transform 600ms var(--ease-soft);
 }
-.img-frame:hover .hero-img { filter: grayscale(0%) contrast(1.1); }
+.img-frame:hover .hero-img {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.22),
+    0 26px 65px -20px rgba(125, 211, 252, 0.42),
+    0 14px 44px -18px rgba(0, 0, 0, 0.7);
+}
 
 .img-glitch-bar {
   position: absolute;
@@ -709,7 +817,7 @@ const educationItems = [
   text-decoration: none;
   position: relative;
   overflow: visible;
-  transition: color 300ms ease, border-color 300ms ease;
+  transition: color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 .social-btn::before {
   content: '';
@@ -721,7 +829,11 @@ const educationItems = [
   transition: opacity 300ms ease;
   pointer-events: none;
 }
-.social-btn:hover                { color: var(--accent-solid); border-color: var(--accent-border); }
+.social-btn:hover {
+  color: var(--accent-solid);
+  border-color: var(--accent-border);
+  box-shadow: 0 8px 20px -10px rgba(125, 211, 252, 0.45);
+}
 .social-btn:hover::before        { opacity: 1; }
 .social-btn i                    { font-size: 1rem; position: relative; z-index: 1; }
 
@@ -767,6 +879,16 @@ const educationItems = [
   color: var(--text-primary);
   font-weight: 700;
 }
+/* Name accent — draws the eye without touching the copy */
+.name-highlight {
+  font-weight: 700;
+  background: linear-gradient(120deg, rgb(125, 211, 252), rgb(103, 232, 249));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent-solid);
+  filter: drop-shadow(0 0 14px rgba(125, 211, 252, 0.28));
+}
 
 /* ══ CTA Buttons — exact match to contact page style ══ */
 .hero-ctas {
@@ -790,9 +912,10 @@ const educationItems = [
   text-decoration: none;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
   border: 1px solid transparent;
   transition:
-    transform 250ms ease,
+    transform 250ms var(--ease-soft),
     background 250ms ease,
     border-color 250ms ease,
     box-shadow 250ms ease;
@@ -800,9 +923,11 @@ const educationItems = [
   min-width: 148px;
   justify-content: center;
 }
+.btn .btn-label,
+.btn .btn-icon { position: relative; z-index: 1; }
 .btn .btn-icon {
   font-size: 0.7rem;
-  transition: transform 250ms ease;
+  transition: transform 250ms var(--ease-soft);
 }
 .btn:hover        { transform: translateY(-2px); }
 .btn:active       { transform: translateY(0); }
@@ -823,6 +948,26 @@ const educationItems = [
   border-color: rgba(125, 211, 252, 0.45);
   box-shadow: 0 0 24px rgba(125, 211, 252, 0.12);
 }
+/* Light sweep on hover */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 650ms var(--ease-soft);
+  pointer-events: none;
+  z-index: 0;
+}
+.btn-primary:hover::after { left: 150%; }
 
 /* Secondary — ghost pill (identical to contact ghost pill) */
 .btn-secondary {
@@ -834,6 +979,48 @@ const educationItems = [
   border-color: rgba(125, 211, 252, 0.25);
   color: rgba(125, 211, 252, 0.8);
   background: rgba(125, 211, 252, 0.06);
+}
+
+/* ── Scroll cue ── */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.1rem, 3vw, 2.1rem);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none;
+}
+.scroll-cue-text {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.scroll-cue-line {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, rgba(125, 211, 252, 0.45), transparent);
+  overflow: hidden;
+}
+.scroll-cue-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--accent-solid);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%   { transform: translateY(-110%); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: translateY(360%);  opacity: 0; }
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -869,6 +1056,18 @@ const educationItems = [
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.2;
+}
+/* Animated gradient underline (scaleX driven by GSAP on scroll-in) */
+.title-underline {
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin: 1rem auto 0;
+  border-radius: 2px;
+  background: linear-gradient(to right, transparent, var(--accent-solid), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0.85;
 }
 
 .timeline-list {
@@ -988,11 +1187,14 @@ const educationItems = [
   cursor: default;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: border-color 300ms ease, background-color 300ms ease;
+  transition: border-color 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
 }
 .exp-card:hover {
   border-color: var(--accent-border);
   background: var(--surface-2);
+  box-shadow:
+    0 20px 45px -24px rgba(125, 211, 252, 0.35),
+    0 10px 30px -18px rgba(0, 0, 0, 0.6);
 }
 
 .card-glow {
@@ -1120,6 +1322,12 @@ const educationItems = [
   border: 1px solid var(--accent-border);
   padding: 0.18rem 0.5rem;
   border-radius: 4px;
+  transition: background 250ms ease, border-color 250ms ease, color 250ms ease;
+}
+.exp-card:hover .tag,
+.edu-card:hover .tag {
+  color: var(--accent-solid);
+  border-color: rgba(125, 211, 252, 0.4);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -1162,11 +1370,14 @@ const educationItems = [
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: border-color 300ms ease, background-color 300ms ease;
+  transition: border-color 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
 }
 .edu-card:hover {
   border-color: var(--accent-border);
   background: var(--surface-2);
+  box-shadow:
+    0 20px 45px -24px rgba(125, 211, 252, 0.32),
+    0 10px 30px -18px rgba(0, 0, 0, 0.6);
 }
 
 /* Left accent stripe — sky blue */
@@ -1178,7 +1389,9 @@ const educationItems = [
   background: linear-gradient(to bottom, transparent, var(--accent-solid), transparent);
   opacity: 0.35;
   border-radius: 0 2px 2px 0;
+  transition: opacity 300ms ease;
 }
+.edu-card:hover::before { opacity: 0.75; }
 
 .edu-card-header {
   display: flex;
@@ -1270,6 +1483,8 @@ const educationItems = [
 
   .social-links { gap: 0.6rem; padding-bottom: 32px; }
 
+  .scroll-cue { display: none; }
+
   .timeline-spine               { left: 27px; transform: none; }
   .timeline-item                { flex-direction: row !important; }
   .tl-center                    { order: -1; flex: 0 0 54px; }
@@ -1298,5 +1513,6 @@ const educationItems = [
     transform: none !important;
     opacity: 1 !important;
   }
+  .name-highlight { filter: none !important; }
 }
 </style>

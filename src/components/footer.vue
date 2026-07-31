@@ -82,7 +82,7 @@
             aria-label="Resume"
             class="social-btn"
           >
-            <i class="pi pi-file-pdf"></i>
+            <i class="pi pi-file"></i>
             <span class="social-label">Resume</span>
           </a>
 
@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import resumePdf from '@/assets/Aarav_Uppal_Resume.pdf'
+ import resumePdf from '@/assets/AaravUppal_Resume.pdf'
 </script>
 
 <style scoped>
